@@ -1,15 +1,15 @@
 const users = [
   {
-    name: "Sarita  Shrestha",
-    email: "trialkorea7766@gmail.com",
-    password: "uobi xaxk dreq rycc",
+    name: "Sarita Shrestha",
+    email: "nishandevkota961@gmail.com",
+    password: "bujw mwbw bsvp rqnk",
     number: "9811349191",
     passportNo: "PA2407965",
   },
   {
     name: "Parwati Shah",
-    email: "testtrial998866@gmail.com",
-    password: "ddob gsms noai ijwp",
+    email: "testnewyear2@gmail.com",
+    password: "qmvm tvjs wxpl xqzu",
     number: "9769725976",
     passportNo: "PA0636084",
   },

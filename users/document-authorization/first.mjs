@@ -1,15 +1,15 @@
 const users = [
   {
     name: "Toyananda Dahal",
-    email: "samjhanakarki200002@gmail.com",
-    password: "ndes qwda pgmq ixwn",
+    email: "prashantkhatri6421@gmail.com",
+    password: "nhpd avlo tzyo rzqg",
     number: "9811628047",
     passportNo: "PA3108324",
   },
   {
     name: "Prajwal Poudel",
-    email: "ritanepali1220@gmail.com",
-    password: "wctm faxl mfjm txhe",
+    email: "manikrajbanshi516@gmail.com",
+    password: "qxfw uftk cjrw czwb",
     number: "98105237234",
     passportNo: "12368884",
   },
