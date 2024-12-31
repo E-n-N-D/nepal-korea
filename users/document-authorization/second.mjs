@@ -1,17 +1,17 @@
 const users = [
   {
-    name: "Sarita Shrestha",
-    email: "nishandevkota961@gmail.com",
-    password: "bujw mwbw bsvp rqnk",
-    number: "9811349191",
-    passportNo: "PA2407965",
+    name: "Prajwal Poudel",
+    email: "prajwalpoudel007711@gmail.com",
+    password: "hjpo flmh btdh wruk",
+    number: "9769725976",
+    passportNo: "12368884",
   },
   {
-    name: "Parwati Shah",
-    email: "testnewyear2@gmail.com",
-    password: "qmvm tvjs wxpl xqzu",
-    number: "9769725976",
-    passportNo: "PA0636084",
+    name: "Srijana Bhattarai",
+    email: "srijanabhattarai665500@gmail.com",
+    password: "pxml rqxq ipmt mikw",
+    number: "9811349186",
+    passportNo: "PA0635372",
   },
 ];
 

@@ -1,17 +1,17 @@
 const users = [
   {
-    name: "Toyananda Dahal",
-    email: "prashantkhatri6421@gmail.com",
-    password: "nhpd avlo tzyo rzqg",
-    number: "9811628047",
-    passportNo: "PA3108324",
+    name: "Ambika Mahara",
+    email: "ambikamahara832@gmail.com",
+    password: "knal phev kbpl ukan",
+    number: "9811349187",
+    passportNo: "PA2238649",
   },
   {
-    name: "Prajwal Poudel",
-    email: "manikrajbanshi516@gmail.com",
-    password: "qxfw uftk cjrw czwb",
-    number: "98105237234",
-    passportNo: "12368884",
+    name: "Kalyan Limbu",
+    email: "kalyanlimbu19@gmail.com",
+    password: "cpbw euvo orww srve",
+    number: "9811349189",
+    passportNo: "PA1729765",
   },
 ];
 
