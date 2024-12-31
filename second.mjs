@@ -11,7 +11,7 @@ import {
   getCaptchaText,
 } from "./utilities.mjs";
 import proxyUrl from "./proxy.mjs";
-import users from "./users/document-authorization/first.mjs";
+import users from "./users/document-authorization/second.mjs";
 
 class PreLoggedInUser {
   constructor(user, index) {
