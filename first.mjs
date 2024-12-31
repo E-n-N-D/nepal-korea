@@ -226,8 +226,7 @@ class PreLoggedInUser {
 
     console.log(availableSlots.length);
 
-    // let selectedTimeSlot = availableSlots[availableSlots.length - this.index - 1];
-    let selectedTimeSlot = availableSlots[0];
+    let selectedTimeSlot = availableSlots[this.index];
     console.log(`Selected Time - ${selectedTimeSlot?.timeNm}`);
 
     this.completeReservationData.visitDe = pickedDate;
