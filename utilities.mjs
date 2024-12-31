@@ -3,7 +3,7 @@ import { parse, format } from "date-fns";
 import cookie from "cookie";
 
 const FLASK_APP_URL = "http://localhost:8333/";
-const CAPSOLVER_KEY = "CAP-23FE76728B07D9890480B17213CBCC9D";
+const CAPSOLVER_KEY = "CAP-9CDB5CBF6DE85C23F5BF38365A4B9441";
 
 // Function to extract cookies from a response header
 const extractCookies = (response) => {
@@ -90,65 +90,11 @@ const fetchGmailOTPCode = async (gmailAccess) => {
     });
 };
 
-const storeUserCookies = async (email, cookies) => {
-  let data = JSON.stringify({
-    key: email,
-    value: cookies,
-  });
-
-  let config = {
-    method: "post",
-    maxBodyLength: Infinity,
-    url: `${FLASK_APP_URL}/redis/cookie`,
-    headers: {
-      "Content-Type": "application/json",
-    },
-    data: data,
-  };
-
-  return await axios
-    .request(config)
-    .then((response) => {
-      return response.data.success;
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-};
-
-const fetchUserCookies = async (email) => {
-  let config = {
-    method: "get",
-    maxBodyLength: Infinity,
-    url: `${FLASK_APP_URL}/redis/cookie/${email}`,
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-
-  return await axios
-    .request(config)
-    .then((response) => {
-      if (response.data.success) {
-        return response.data;
-      } else {
-        return {
-          success: false,
-        };
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-};
-
 export {
   extractCookies,
   buildCookieHeader,
   delayForSeconds,
   formatDateWithDot,
   fetchGmailOTPCode,
-  storeUserCookies,
-  fetchUserCookies,
   getCaptchaText,
 };

@@ -1,9 +1,6 @@
 import axios from "axios";
 import { HttpsProxyAgent } from "https-proxy-agent";
 import fs from "fs";
-// import cookie from "cookie";
-// import * as cheerio from "cheerio";
-// import * as CapSolver from "capsolver";
 import { country } from "./country.mjs";
 import { parse } from "date-fns";
 import {
@@ -196,7 +193,7 @@ class PreLoggedInUser {
 
     const visitReserveCalendarUrl =
       "https://www.g4k.go.kr/ciph/0800/selectVisitReserveCalendarYes.do";
-    const date = "202412";
+    const date = "202501";
     let dta = `emblCd=${country.emblCd}&emblTime=${date}&visitResveBussGrpCd=${country.mainKind}`;
     let filteredDates = [];
 
@@ -230,7 +227,7 @@ class PreLoggedInUser {
 
     console.log(availableSlots.length);
 
-    let selectedTimeSlot = availableSlots[this.index];
+    let selectedTimeSlot = availableSlots[availableSlots.length - this.index - 1];
     console.log(`Selected Time - ${selectedTimeSlot?.timeNm}`);
 
     this.completeReservationData.visitDe = pickedDate;

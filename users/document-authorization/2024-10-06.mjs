@@ -71,13 +71,13 @@ const users = [
     passportNo: "PA2457368",
   },
 
-  // {
-  //   name: "Prajwal Poudel",
-  //   email: "prajwalpoudel007711@gmail.com",
-  //   password: "hjpo flmh btdh wruk",
-  //   number: "98105237234",
-  //   passportNo: "12368884",
-  // },
+  {
+    name: "Prajwal Poudel",
+    email: "prajwalpoudel007711@gmail.com",
+    password: "hjpo flmh btdh wruk",
+    number: "98105237234",
+    passportNo: "12368884",
+  },
 
   // {
   //   name: "Komal Shreepali",

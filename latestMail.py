@@ -12,8 +12,8 @@ IMAP_PORT = 993
 # EMAIL_ACCOUNT = "kortest77@gmail.com"
 # PASSWORD = "spgs qril pbvl hwzk"
 
-EMAIL_ACCOUNT = "bookinga201@gmail.com"
-PASSWORD = "hghg ccda uyim iroa"
+EMAIL_ACCOUNT = "saritashrestha1127@gmail.com"
+PASSWORD = "mxzu nuig rftl qchy"
 
 
 # Connect to the IMAP server

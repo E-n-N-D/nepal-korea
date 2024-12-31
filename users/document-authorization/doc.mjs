@@ -27,13 +27,13 @@ const users = [
   //   number: "9810550535",
   //   passportNo: "PA3304098",
   // },
-  {
-    name: "Aklesh Kumar Yadav",
-    email: "aklesh5588572@gmail.com",
-    password: "jxic camp ubht gzhz",
-    number: "9826768921",
-    passportNo: "BA0277717",
-  },
+  // {
+  //   name: "Aklesh Kumar Yadav",
+  //   email: "aklesh5588572@gmail.com",
+  //   password: "jxic camp ubht gzhz",
+  //   number: "9826768921",
+  //   passportNo: "BA0277717",
+  // },
   {
     name: "Rohan Rimal",
     email: "rohanrimal476@gmail.com",

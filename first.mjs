@@ -8,7 +8,6 @@ import {
   buildCookieHeader,
   delayForSeconds,
   fetchGmailOTPCode,
-  // storeUserCookies,
   getCaptchaText,
 } from "./utilities.mjs";
 import proxyUrl from "./proxy.mjs";
@@ -153,13 +152,14 @@ class PreLoggedInUser {
     }
     this.logMessage("Successfully logged in:", "success");
     this.logMessage("Appointment Booking Starts");
-    res = false
-    while(!res){
+    res = false;
+    while (!res) {
       try {
         await this.getTime();
+        this.completeReservationData.captchaTxt = await this.loadCaptcha(true);
         res = await this.getAppointment();
       } catch (error) {
-        console.log(error.message)
+        console.log(error.message);
       }
     }
 
@@ -192,7 +192,7 @@ class PreLoggedInUser {
 
     const visitReserveCalendarUrl =
       "https://www.g4k.go.kr/ciph/0800/selectVisitReserveCalendarYes.do";
-    const date = "202412";
+    const date = "202501";
     let dta = `emblCd=${country.emblCd}&emblTime=${date}&visitResveBussGrpCd=${country.mainKind}`;
     let filteredDates = [];
 
@@ -226,7 +226,8 @@ class PreLoggedInUser {
 
     console.log(availableSlots.length);
 
-    let selectedTimeSlot = availableSlots[this.index];
+    // let selectedTimeSlot = availableSlots[availableSlots.length - this.index - 1];
+    let selectedTimeSlot = availableSlots[0];
     console.log(`Selected Time - ${selectedTimeSlot?.timeNm}`);
 
     this.completeReservationData.visitDe = pickedDate;
@@ -239,8 +240,6 @@ class PreLoggedInUser {
   }
 
   async getAppointment() {
-    this.completeReservationData.captchaTxt = await this.loadCaptcha(true);
-
     const url = `https://tc.g4k.go.kr/ts.wseq?opcode=5101&nfid=0&prefix=NetFunnel.gRtype=5101;&sid=service_1&aid=INSERT_VISIT&js=yes&&${Date.now()}`;
     const resp = await this.instance.get(url, {
       headers: {
@@ -262,7 +261,7 @@ class PreLoggedInUser {
       this.completeReservationData
     ).toString();
 
-    const last_resp = await this.instance.post(
+    let last_resp = await this.instance.post(
       "https://www.g4k.go.kr/ciph/0800/insertResveVisitEng.do",
       resvData,
       {
@@ -284,6 +283,35 @@ class PreLoggedInUser {
       );
       return true;
     }
+    if (last_resp.data.result == 0) {
+      console.log("Data zero: ", last_resp.data);
+      last_resp = await this.instance.post(
+        "https://www.g4k.go.kr/ciph/0800/insertResveVisitEng.do",
+        resvData,
+        {
+          headers: {
+            ...this.config.headers,
+            ...{
+              Cookie:
+                buildCookieHeader(this.cookies) +
+                `; NetFunnel_ID=${encodeURIComponent(n_cookie)}`,
+            },
+          },
+        }
+      );
+
+      if (last_resp.data?.wsdlErrorNm && last_resp.data.wsdlErrorNm != "실패") {
+        this.logMessage(
+          `${this.user.name} : Appointment Booked: ID: "${last_resp.data?.wsdlErrorNm}"`,
+          "success"
+        );
+        return true;
+      } else {
+        console.log("Data zero retry: ", last_resp.data);
+        return false;
+      }
+    }
+    console.log("Data not zero: ", last_resp.data);
     return false;
   }
 
@@ -342,7 +370,7 @@ class PreLoggedInUser {
       certNoFlag: "NONE",
     };
     // console.log(data);
-    while(true){
+    while (true) {
       try {
         const res_ = await this.instance.post(this.email_sender, data, {
           headers: {
@@ -353,11 +381,11 @@ class PreLoggedInUser {
             },
           },
         });
-    
+
         this.cookies = { ...this.cookies, ...extractCookies(res_) };
-        return        
+        return;
       } catch (error) {
-        console.log(error.message)
+        console.log(error.message);
       }
     }
   }

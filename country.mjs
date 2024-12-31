@@ -81,4 +81,16 @@ const belg ={
   // visitrCttpcNatnCd: "BB",
 }
 
-export const country = nepalDoc;
+const nepalFamily = {
+  emblCd: 'NP',
+  businessNm: `{"mainKindNm":["가족관계"],"cffdnNm":["가족관계"]}`,
+  grpNmListDB: '가족관계',
+  cffdnNmDB: '가족관계',
+  mainKind: 'NP0014',
+  subKind: 'NP0014',
+  totcnt: '1',
+  onedaycnt: '1',
+  // visitrCttpcNatnCd: "NP",
+}
+
+export const country = nzVisa;

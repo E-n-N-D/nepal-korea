@@ -1,10 +1,10 @@
 const iproyal_proxy = {
-  port: 12321,
-  host: "geo.iproyal.com",
+  port: 80,
+  host: "p.webshare.io",
   protocol: "http",
   auth: {
-    username: "ZBfOT4v4OJMgyrfk",
-    password: "8veMWonizdN9eOss",
+    username: "msnmrxye-KR-rotate",
+    password: "rqhdguijvjv0",
   },
 };
 
