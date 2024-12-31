@@ -1,7 +1,7 @@
 const users = [
   {
     name: "Sarita  Shrestha",
-    email: "trialkorea7766@gmai.com",
+    email: "trialkorea7766@gmail.com",
     password: "uobi xaxk dreq rycc",
     number: "9811349191",
     passportNo: "PA2407965",
