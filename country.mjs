@@ -93,4 +93,4 @@ const nepalFamily = {
   // visitrCttpcNatnCd: "NP",
 }
 
-export const country = nepalDoc;
+export const country = nzVisa;
