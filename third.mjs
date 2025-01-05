@@ -60,7 +60,7 @@ async function fetch_available_dates() {
     // }
     let all_slots = [];
     for (let pickedDate of filteredDates) {
-        pickedDate = filteredDates[0].visitDe;
+        pickedDate = pickedDate.visitDe;
         dta = `emblCd=${country.emblCd}&visitDe=${pickedDate}&visitResveBussGrpCd=${country.mainKind}`;
         const visitTimeUrl =
             "https://www.g4k.go.kr/ciph/0800/selectVisitReserveTime.do";
@@ -72,9 +72,10 @@ async function fetch_available_dates() {
         );
         all_slots = all_slots.concat(availableSlots)
         fs.writeFileSync('available_dates.json', JSON.stringify(all_slots, null, 2));
+        await delayForSeconds(2);
         // console.log(availableSlots);
     }
-    fs.writeFileSync('available_dates.json', JSON.stringify(all_slots, null, 2));
+    // fs.writeFileSync('available_dates.json', JSON.stringify(all_slots, null, 2));
     // console.log(all_slots)
 
     // let selectedTimeSlot = availableSlots[this.index];
