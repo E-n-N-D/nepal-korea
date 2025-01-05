@@ -373,8 +373,8 @@ class PreLoggedInUser {
         },
       });
       this.cookies = { ...this.cookies, ...extractCookies(resp) };
-      console.log(resp)
-      console.log(this.cookies);
+      // console.log(resp)
+      // console.log(this.cookies);
 
       return true;
     } catch (error) {
