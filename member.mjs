@@ -350,7 +350,6 @@ class PreLoggedInUser {
   }
 
   async doLoginProcess(captcha) {
-
     const url = "https://www.g4k.go.kr/cipl/0100/loginProcess.do";
     const formData = new URLSearchParams();
     formData.append("ksignInputMberId", "");
@@ -369,7 +368,7 @@ class PreLoggedInUser {
           ...this.config.headers,
           ...{
             Cookie: buildCookieHeader(this.cookies),
-          },w
+          },
         },
       });
       this.cookies = { ...this.cookies, ...extractCookies(resp) };
