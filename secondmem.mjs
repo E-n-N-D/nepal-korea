@@ -7,11 +7,10 @@ import {
   extractCookies,
   buildCookieHeader,
   delayForSeconds,
-  fetchGmailOTPCode,
   getCaptchaText,
 } from "./utilities.mjs";
 import proxyUrl from "./proxy.mjs";
-import users from "./users/document-authorization/first.mjs";
+import users from "./users/document-authorization/second.mjs";
 
 class PreLoggedInUser {
   constructor(user, index) {
@@ -203,7 +202,7 @@ class PreLoggedInUser {
       await delayForSeconds(0.1);
     }
 
-    const pickedDate = filteredDates[filteredDates.length - 1].visitDe;
+    const pickedDate = filteredDates[filteredDates.length - 2].visitDe;
     dta = `emblCd=${country.emblCd}&visitDe=${pickedDate}&visitResveBussGrpCd=${country.mainKind}`;
     const visitTimeUrl =
       "https://www.g4k.go.kr/ciph/0800/selectVisitReserveTime.do";
