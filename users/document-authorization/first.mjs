@@ -35,18 +35,11 @@ const users = [
   //   passportNo: "12368884",
   // },
   {
-    name: "Mandip Baral",
-    email: "appointmentb71@gmail.com",
-    password: "ailc vxsf cfrz mkqf",
-    number: "9748202531",
+    name: "Rohan Rimal",
+    email: "rohanrimal476@gmail.com",
+    password: "Email@590jrt",
+    number: "981632208",
     passportNo: "PA3028041",
-  },
-  {
-    name: "Manish Mainali",
-    email: "bookinga201@gmail.com",
-    number: "9756476677",
-    password: "hghg ccda uyim iroa",
-    passportNo: "PA0421234"
   },
 ];
 
