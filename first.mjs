@@ -8,6 +8,7 @@ import {
   buildCookieHeader,
   delayForSeconds,
   fetchGmailOTPCode,
+  // storeUserCookies,
   getCaptchaText,
 } from "./utilities.mjs";
 import proxyUrl from "./proxy.mjs";
@@ -62,6 +63,7 @@ class PreLoggedInUser {
 
     this.instance = axios.create({
       withCredentials: true,
+      // timeout: 2000,
       httpsAgent: new HttpsProxyAgent(proxyUrl, { keepAlive: true }),
       proxy: false,
     });
@@ -122,29 +124,20 @@ class PreLoggedInUser {
         await this.getPage();
         this.logMessage("Login page fetched.");
         const captchaText = await this.loadCaptcha();
-        //   console.log(captchaText);
 
-        await this.submitCaptcha(captchaText);
-        this.logMessage("Waiting for 20 seconds.");
-        await delayForSeconds(25);
-
-        this.logMessage("Fetching OTP from Gmail.");
-        let otpCode = await fetchGmailOTPCode({
-          email: this.user.email,
-          password: this.user.password,
+        const url = `https://tc.g4k.go.kr/ts.wseq?opcode=5101&nfid=0&prefix=NetFunnel.gRtype=5101;&sid=service_1&aid=login_btn&js=yes&${Date.now()}`;
+        const resp = await this.instance.get(url, {
+          headers: {
+            ...this.config.headers,
+            ...{
+              Cookie: buildCookieHeader(this.cookies),
+            },
+          },
         });
-        //   console.log(otpCode);
-        if (!otpCode) {
-          this.logMessage("OTP Not found, Trying Again!");
-          await delayForSeconds(2);
-          otpCode = await fetchGmailOTPCode({
-            email: this.user.email,
-            password: this.user.password,
-          });
-        }
+
         // await this.submitEmailOtp(otpCode);
         this.logMessage("Submitting Login form.");
-        res = await this.doLoginProcess(otpCode);
+        res = await this.doLoginProcess(captchaText);
         // ****** Login Steps End ******
       } catch (e) {
         console.log(e);
@@ -156,7 +149,6 @@ class PreLoggedInUser {
     while (!res) {
       try {
         await this.getTime();
-        this.completeReservationData.captchaTxt = await this.loadCaptcha(true);
         res = await this.getAppointment();
       } catch (error) {
         console.log(error.message);
@@ -167,79 +159,28 @@ class PreLoggedInUser {
   }
 
   async getTime() {
-    const inte = axios.create({
-      withCredentials: true,
-      httpsAgent: new HttpsProxyAgent(proxyUrl, { keepAlive: true }),
-      proxy: false,
-      headers: {
-        Host: "www.g4k.go.kr",
-        "sec-ch-ua":
-          '"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
-        Accept: "*/*",
-        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-        "X-Requested-With": "XMLHttpRequest",
-        "sec-ch-ua-mobile": "?0",
-        "User-Agent":
-          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-        "sec-ch-ua-platform": '"Windows"',
-        Origin: "https://www.g4k.go.kr",
-        "Sec-Fetch-Site": "same-origin",
-        "Sec-Fetch-Mode": "cors",
-        "Sec-Fetch-Dest": "empty",
-        "Accept-Language": "en-US,en;q=0.9",
-      },
-    });
-
-    const visitReserveCalendarUrl =
-      "https://www.g4k.go.kr/ciph/0800/selectVisitReserveCalendarYes.do";
-    const date = "202501";
-    let dta = `emblCd=${country.emblCd}&emblTime=${date}&visitResveBussGrpCd=${country.mainKind}`;
-    let filteredDates = [];
-
-    while (filteredDates.length == 0) {
+    let jsonFilePath = "available_dates.json";
+    while (true) {
       try {
-        const selectableDates = await inte.post(visitReserveCalendarUrl, dta);
-        filteredDates = selectableDates.data.visitReserveCalendarYesResult
-          .flat()
-          .filter(
-            (date) =>
-              date.visitYn === "Y" &&
-              parse(date.visitDe, "yyyyMMdd", new Date()) > new Date()
-          );
-        console.log("Date available: ", filteredDates);
+        const data = JSON.parse(fs.readFileSync(jsonFilePath, "utf-8"));
+        if (Array.isArray(data) && data.length > 0 && data.length >= index) {
+          this.completeReservationData.visitDe = data[index].emblCd;
+          this.completeReservationData.timeCd = data[index].timeCd;
+          this.completeReservationData.resveTimeNm =
+            data[index]?.timeNm?.split(" ~ ")[0];
+          this.completeReservationData.visitResveId = data[index].visitResveId;
+        }
       } catch (error) {
-        console.log(error.message);
+        console.error("Error reading JSON file:", error.message);
       }
       await delayForSeconds(0.1);
     }
-
-    const pickedDate = filteredDates[0].visitDe;
-    dta = `emblCd=${country.emblCd}&visitDe=${pickedDate}&visitResveBussGrpCd=${country.mainKind}`;
-    const visitTimeUrl =
-      "https://www.g4k.go.kr/ciph/0800/selectVisitReserveTime.do";
-    const resp = await inte.post(visitTimeUrl, dta);
-
-    // pick first time slot available
-    const availableSlots = resp.data.resveResult.filter(
-      (time) => time.visitYn == "Y"
-    );
-
-    console.log(availableSlots.length);
-
-    // let selectedTimeSlot = availableSlots[availableSlots.length - this.index - 1];
-    let selectedTimeSlot = availableSlots[0];
-    console.log(`Selected Time - ${selectedTimeSlot?.timeNm}`);
-
-    this.completeReservationData.visitDe = pickedDate;
-    this.completeReservationData.timeCd = selectedTimeSlot.timeCd;
-    this.completeReservationData.resveTimeNm =
-      selectedTimeSlot?.timeNm?.split(" ~ ")[0];
-    this.completeReservationData.visitResveId = selectedTimeSlot.visitResveId;
-
     return;
   }
 
   async getAppointment() {
+    this.completeReservationData.captchaTxt = await this.loadCaptcha(true);
+
     const url = `https://tc.g4k.go.kr/ts.wseq?opcode=5101&nfid=0&prefix=NetFunnel.gRtype=5101;&sid=service_1&aid=INSERT_VISIT&js=yes&&${Date.now()}`;
     const resp = await this.instance.get(url, {
       headers: {
@@ -261,7 +202,7 @@ class PreLoggedInUser {
       this.completeReservationData
     ).toString();
 
-    let last_resp = await this.instance.post(
+    const last_resp = await this.instance.post(
       "https://www.g4k.go.kr/ciph/0800/insertResveVisitEng.do",
       resvData,
       {
@@ -283,35 +224,6 @@ class PreLoggedInUser {
       );
       return true;
     }
-    if (last_resp.data.result == 0) {
-      console.log("Data zero: ", last_resp.data);
-      last_resp = await this.instance.post(
-        "https://www.g4k.go.kr/ciph/0800/insertResveVisitEng.do",
-        resvData,
-        {
-          headers: {
-            ...this.config.headers,
-            ...{
-              Cookie:
-                buildCookieHeader(this.cookies) +
-                `; NetFunnel_ID=${encodeURIComponent(n_cookie)}`,
-            },
-          },
-        }
-      );
-
-      if (last_resp.data?.wsdlErrorNm && last_resp.data.wsdlErrorNm != "실패") {
-        this.logMessage(
-          `${this.user.name} : Appointment Booked: ID: "${last_resp.data?.wsdlErrorNm}"`,
-          "success"
-        );
-        return true;
-      } else {
-        console.log("Data zero retry: ", last_resp.data);
-        return false;
-      }
-    }
-    console.log("Data not zero: ", last_resp.data);
     return false;
   }
 
@@ -401,28 +313,18 @@ class PreLoggedInUser {
     await this.doLoginProcess(otpCode);
   }
 
-  async doLoginProcess(otp) {
-    const preLoginUrl = "https://www.g4k.go.kr/cipr/0100/selectNonMember.do";
-    const data = new URLSearchParams({
-      mberNm: this.user.name,
-      // nationCd: "NP",
-      nationCd: country.emblCd,
-      moblTelNo: this.user.number,
-      emailAddr: this.user.email,
-      crtfKeyNo: otp,
-      loginType: "emailChk",
-    }).toString();
-
-    const resp = await this.instance.post(preLoginUrl, data, this.config);
-    // console.log(resp.data);
-
-    // await getNetFunnelId(); //add netfunnelcookie
+  async doLoginProcess(captcha) {
     const url = "https://www.g4k.go.kr/cipl/0100/loginProcess.do";
     const formData = new URLSearchParams();
-    formData.append("NomemberloginType", "idpw");
-    formData.append("NomemberloginFormTyp", "popup");
-    formData.append("NomemberforwardUrl", "/ciph/0800/selectCIPH0801S1eng.do");
-    formData.append("loginId", "NOMEMBER");
+    formData.append("ksignInputMberId", "");
+    formData.append("loginType", "idpw");
+    formData.append("failResult", "");
+    formData.append("cffdnCd", "");
+    formData.append("callCd", "");
+    formData.append("forwardUrl", "/");
+    formData.append("loginId", this.user.email);
+    formData.append("loginPwd", this.user.password);
+    formData.append("captchaTxt", captcha);
 
     try {
       const resp = await this.instance.post(url, formData.toString(), {
@@ -434,6 +336,8 @@ class PreLoggedInUser {
         },
       });
       this.cookies = { ...this.cookies, ...extractCookies(resp) };
+      console.log(resp);
+      console.log(this.cookies);
 
       return true;
     } catch (error) {
@@ -446,3 +350,28 @@ class PreLoggedInUser {
 users.map(async (user, index) => {
   await new PreLoggedInUser(user, index).runTask();
 });
+
+// // Function to monitor the JSON file
+// async function monitorJsonFile() {
+//   let previousData = [];
+//   while (true) {
+//     try {
+//       const data = JSON.parse(fs.readFileSync(jsonFilePath, 'utf-8'));
+//       if (Array.isArray(data) && data.length > 0 && data.length !== previousData.length) {
+//         previousData = data; // Update previous data
+//         // Run PreLoggedInUser for each user in the array
+//         for (let index = 0; index < data.length && index < users.length; index++) {
+//           await new PreLoggedInUser(users[index], index, data[index]).runTask();
+//         }
+//       }
+//     } catch (error) {
+//       console.error("Error reading JSON file:", error.message);
+//     }
+//     delayForSeconds(0.1);
+//   }
+// }
+
+// // Start monitoring the JSON file
+// monitorJsonFile();
+
+// // ... existing code ...

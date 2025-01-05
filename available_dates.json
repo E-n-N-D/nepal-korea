@@ -1,0 +1,18 @@
+[
+  {
+    "timeNm": "15:00 ~ 15:30",
+    "timeCd": "B26",
+    "visitYn": "Y",
+    "emblCd": "AQ",
+    "visitResveId": "AQ000100",
+    "visitDe": "20250108"
+  },
+  {
+    "timeNm": "15:30 ~ 16:00",
+    "timeCd": "B27",
+    "visitYn": "Y",
+    "emblCd": "AQ",
+    "visitResveId": "AQ000100",
+    "visitDe": "20250108"
+  }
+]
