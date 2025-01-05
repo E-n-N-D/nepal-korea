@@ -369,7 +369,7 @@ class PreLoggedInUser {
           ...this.config.headers,
           ...{
             Cookie: buildCookieHeader(this.cookies),
-          },
+          },w
         },
       });
       this.cookies = { ...this.cookies, ...extractCookies(resp) };
