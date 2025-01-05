@@ -70,6 +70,7 @@ async function fetch_available_dates() {
         const availableSlots = resp.data.resveResult.filter(
             (time) => time.visitYn == "Y"
         );
+        console.log("Get all slots of date: ", pickedDate);
         all_slots = all_slots.concat(availableSlots)
         fs.writeFileSync('available_dates.json', JSON.stringify(all_slots, null, 2));
         await delayForSeconds(2);
