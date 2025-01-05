@@ -8,12 +8,10 @@ import {
   buildCookieHeader,
   delayForSeconds,
   fetchGmailOTPCode,
-  storeUserCookies,
   getCaptchaText,
 } from "./utilities.mjs";
-// import cookie_data from './data.json' assert { type: 'json' };
 import proxyUrl from "./proxy.mjs";
-import users from "./users/document-authorization/second.mjs";
+import users from "./users/document-authorization/first.mjs";
 
 class PreLoggedInUser {
   constructor(user, index) {
@@ -124,29 +122,19 @@ class PreLoggedInUser {
         await this.getPage();
         this.logMessage("Login page fetched.");
         const captchaText = await this.loadCaptcha();
-        //   console.log(captchaText);
 
-        await this.submitCaptcha(captchaText);
-        this.logMessage("Waiting for 20 seconds.");
-        await delayForSeconds(25);
-
-        this.logMessage("Fetching OTP from Gmail.");
-        let otpCode = await fetchGmailOTPCode({
-          email: this.user.email,
-          password: this.user.password,
+        const url = `https://tc.g4k.go.kr/ts.wseq?opcode=5101&nfid=0&prefix=NetFunnel.gRtype=5101;&sid=service_1&aid=login_btn&js=yes&${Date.now()}`;
+        const resp = await this.instance.get(url, {
+          headers: {
+            ...this.config.headers,
+            ...{
+              Cookie: buildCookieHeader(this.cookies),
+            },
+          },
         });
-        //   console.log(otpCode);
-        if (!otpCode) {
-          this.logMessage("OTP Not found, Trying Again!");
-          await delayForSeconds(2);
-          otpCode = await fetchGmailOTPCode({
-            email: this.user.email,
-            password: this.user.password,
-          });
-        }
         // await this.submitEmailOtp(otpCode);
         this.logMessage("Submitting Login form.");
-        res = await this.doLoginProcess(otpCode);
+        res = await this.doLoginProcess(captchaText);
         // ****** Login Steps End ******
       } catch (e) {
         console.log(e);
@@ -154,13 +142,14 @@ class PreLoggedInUser {
     }
     this.logMessage("Successfully logged in:", "success");
     this.logMessage("Appointment Booking Starts");
-    res = false
-    while(!res){
+    res = false;
+    while (!res) {
       try {
         await this.getTime();
+        this.completeReservationData.captchaTxt = await this.loadCaptcha(true);
         res = await this.getAppointment();
       } catch (error) {
-        console.log(error.message)
+        console.log(error);
       }
     }
 
@@ -214,7 +203,7 @@ class PreLoggedInUser {
       await delayForSeconds(0.1);
     }
 
-    const pickedDate = filteredDates[1].visitDe;
+    const pickedDate = filteredDates[0].visitDe;
     dta = `emblCd=${country.emblCd}&visitDe=${pickedDate}&visitResveBussGrpCd=${country.mainKind}`;
     const visitTimeUrl =
       "https://www.g4k.go.kr/ciph/0800/selectVisitReserveTime.do";
@@ -227,7 +216,8 @@ class PreLoggedInUser {
 
     console.log(availableSlots.length);
 
-    let selectedTimeSlot = availableSlots[availableSlots.length - this.index - 1];
+    // let selectedTimeSlot = availableSlots[availableSlots.length - this.index - 1];
+    let selectedTimeSlot = availableSlots[0];
     console.log(`Selected Time - ${selectedTimeSlot?.timeNm}`);
 
     this.completeReservationData.visitDe = pickedDate;
@@ -240,8 +230,6 @@ class PreLoggedInUser {
   }
 
   async getAppointment() {
-    this.completeReservationData.captchaTxt = await this.loadCaptcha(true);
-
     const url = `https://tc.g4k.go.kr/ts.wseq?opcode=5101&nfid=0&prefix=NetFunnel.gRtype=5101;&sid=service_1&aid=INSERT_VISIT&js=yes&&${Date.now()}`;
     const resp = await this.instance.get(url, {
       headers: {
@@ -263,7 +251,7 @@ class PreLoggedInUser {
       this.completeReservationData
     ).toString();
 
-    const last_resp = await this.instance.post(
+    let last_resp = await this.instance.post(
       "https://www.g4k.go.kr/ciph/0800/insertResveVisitEng.do",
       resvData,
       {
@@ -285,6 +273,35 @@ class PreLoggedInUser {
       );
       return true;
     }
+    if (last_resp.data.result == 0) {
+      console.log("Data zero: ", last_resp.data);
+      last_resp = await this.instance.post(
+        "https://www.g4k.go.kr/ciph/0800/insertResveVisitEng.do",
+        resvData,
+        {
+          headers: {
+            ...this.config.headers,
+            ...{
+              Cookie:
+                buildCookieHeader(this.cookies) +
+                `; NetFunnel_ID=${encodeURIComponent(n_cookie)}`,
+            },
+          },
+        }
+      );
+
+      if (last_resp.data?.wsdlErrorNm && last_resp.data.wsdlErrorNm != "실패") {
+        this.logMessage(
+          `${this.user.name} : Appointment Booked: ID: "${last_resp.data?.wsdlErrorNm}"`,
+          "success"
+        );
+        return true;
+      } else {
+        console.log("Data zero retry: ", last_resp.data);
+        return false;
+      }
+    }
+    console.log("Data not zero: ", last_resp);
     return false;
   }
 
@@ -295,7 +312,7 @@ class PreLoggedInUser {
     this.cookies = { ...this.cookies, ...extractCookies(response) };
   }
 
-  async loadCaptcha(last = false) {
+  async loadCaptcha(last = true) {
     this.logMessage("Finding Captcha Text...");
     while (true) {
       try {
@@ -332,70 +349,19 @@ class PreLoggedInUser {
     }
   }
 
-  async submitCaptcha(captchaText) {
-    this.logMessage("Submitting Login Captcha.");
-    const data = {
-      captchaTxt: captchaText,
-      langTypeWebsite: "ENG",
-      rcvpe_num: this.user.number,
-      mberNm: this.user.name,
-      emailAddr: this.user.email,
-      certNoFlag: "NONE",
-    };
-    // console.log(data);
-    while(true){
-      try {
-        const res_ = await this.instance.post(this.email_sender, data, {
-          headers: {
-            ...this.config.headers,
-            ...{
-              Referer: "https://www.g4k.go.kr/cipl/0100/login.do",
-              Cookie: buildCookieHeader(this.cookies),
-            },
-          },
-        });
-    
-        this.cookies = { ...this.cookies, ...extractCookies(res_) };
-        return        
-      } catch (error) {
-        console.log(error.message)
-      }
-    }
-  }
+  async doLoginProcess(captcha) {
 
-  async submitEmailOtp(otpCode) {
-    const otpres = await this.instance.post(
-      this.submit_otp,
-      {
-        crtfKeyNo: otpCode,
-      },
-      this.config
-    );
-    await this.doLoginProcess(otpCode);
-  }
-
-  async doLoginProcess(otp) {
-    const preLoginUrl = "https://www.g4k.go.kr/cipr/0100/selectNonMember.do";
-    const data = new URLSearchParams({
-      mberNm: this.user.name,
-      // nationCd: "NP",
-      nationCd: country.emblCd,
-      moblTelNo: this.user.number,
-      emailAddr: this.user.email,
-      crtfKeyNo: otp,
-      loginType: "emailChk",
-    }).toString();
-
-    const resp = await this.instance.post(preLoginUrl, data, this.config);
-    // console.log(resp.data);
-
-    // await getNetFunnelId(); //add netfunnelcookie
     const url = "https://www.g4k.go.kr/cipl/0100/loginProcess.do";
     const formData = new URLSearchParams();
-    formData.append("NomemberloginType", "idpw");
-    formData.append("NomemberloginFormTyp", "popup");
-    formData.append("NomemberforwardUrl", "/ciph/0800/selectCIPH0801S1eng.do");
-    formData.append("loginId", "NOMEMBER");
+    formData.append("ksignInputMberId", "");
+    formData.append("loginType", "idpw");
+    formData.append("failResult", "");
+    formData.append("cffdnCd", "");
+    formData.append("callCd", "");
+    formData.append("forwardUrl", "/");
+    formData.append("loginId", this.user.email);
+    formData.append("loginPwd", this.user.password);
+    formData.append("captchaTxt", captcha);
 
     try {
       const resp = await this.instance.post(url, formData.toString(), {
@@ -407,6 +373,8 @@ class PreLoggedInUser {
         },
       });
       this.cookies = { ...this.cookies, ...extractCookies(resp) };
+      console.log(resp)
+      console.log(this.cookies);
 
       return true;
     } catch (error) {
