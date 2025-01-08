@@ -1,0 +1,392 @@
+node member.mjs
+User: "Pradip Tamang" - Login page fetched.
+User: "Pradip Tamang" - Finding Captcha Text...
+User: "Pradip Tamang" - Captcha Not Found, trying again.
+User: "Pradip Tamang" - Error fetching or converting the image: socket hang up
+User: "Pradip Tamang" - Captcha Not Found, trying again.
+User: "Pradip Tamang" - Captcha Not Found, trying again.
+User: "Pradip Tamang" - Captcha Found: 374686
+User: "Pradip Tamang" - Submitting Login form.
+ User: "Pradip Tamang" - Successfully logged in: 
+User: "Pradip Tamang" - Appointment Booking Starts
+Date available:  [
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250113' },
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250114' },
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250115' },
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250116' },
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250117' },
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250120' },
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250121' },
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250122' },
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250123' },
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250124' },
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250128' },
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250129' },
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250130' },
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250131' }
+]
+13
+Selected Time - 15:00 ~ 15:30
+User: "Pradip Tamang" - Finding Captcha Text...
+User: "Pradip Tamang" - Captcha Not Found, trying again.
+User: "Pradip Tamang" - Captcha Not Found, trying again.
+User: "Pradip Tamang" - Captcha Not Found, trying again.
+User: "Pradip Tamang" - Captcha Found: 437248
+Data not zero:  {
+  status: 200,
+  statusText: 'OK',
+  headers: Object [AxiosHeaders] {
+    date: 'Wed, 08 Jan 2025 04:35:46 GMT',
+    server: 'Apache',
+    'cache-control': 'no-store, no-store',
+    'strict-transport-security': 'max-age=31536000 ; includeSubDomains',
+    'x-xss-protection': '1; mode=block',
+    'x-frame-options': 'DENY',
+    'x-content-type-options': 'nosniff',
+    'content-language': 'en-US',
+    'access-control-allow-origin': '*',
+    'content-type': 'application/json;charset=UTF-8',
+    'keep-alive': 'timeout=15, max=92',
+    connection: 'Keep-Alive',
+    'transfer-encoding': 'chunked'
+  },
+  config: {
+    transitional: {
+      silentJSONParsing: true,
+      forcedJSONParsing: true,
+      clarifyTimeoutError: false
+    },
+    adapter: [ 'xhr', 'http', 'fetch' ],
+    transformRequest: [ [Function: transformRequest] ],
+    transformResponse: [ [Function: transformResponse] ],
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: -1,
+    maxBodyLength: -1,
+    env: { FormData: [Function], Blob: [class Blob] },
+    validateStatus: [Function: validateStatus],
+    headers: Object [AxiosHeaders] {
+      Accept: '*/*',
+      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+      Cookie: 'SCOUTER=z5psj3gm30jlob; JSESSIONID=dkD1oDxKwV1sScsU6-nHX0vH.cip12; NetFunnel_ID=5002%3A300%3Akey%3D41DA31082199DFA112DD2CA5ADADBB3F305093653BAE821CD4F61AE2CC2963840EE220D4D0DC4220109702BD4ADDC6FB6DAC086810B2016F73400994CDFDDDBF2EDBF3855F98C7367DC870C3A67930B267FB47473180F6CFD7698BC559B2EE595760BBA220E36BA17EA191FC6F0FA5B02C302C31%26nwait%3D0%26nnext%3D0%26tps%3D0.000000%26ttl%3D0%26ip%3Dtc.g4k.go.kr%26port%3D443',
+      Host: 'www.g4k.go.kr',
+      'sec-ch-ua': '"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
+      'X-Requested-With': 'XMLHttpRequest',
+      'sec-ch-ua-mobile': '?0',
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+      'sec-ch-ua-platform': '"Windows"',
+      Origin: 'https://www.g4k.go.kr',
+      'Sec-Fetch-Site': 'same-origin',
+      'Sec-Fetch-Mode': 'cors',
+      'Sec-Fetch-Dest': 'empty',
+      'Accept-Language': 'en-US,en;q=0.9',
+      'Content-Length': '756',
+      'Accept-Encoding': 'gzip, compress, deflate, br'
+    },
+    withCredentials: true,
+    httpsAgent: HttpsProxyAgent {
+      _events: [Object: null prototype],
+      _eventsCount: 2,
+      _maxListeners: undefined,
+      options: [Object],
+      requests: [Object: null prototype] {},
+      sockets: [Object: null prototype] {},
+      freeSockets: [Object: null prototype],
+      keepAliveMsecs: 1000,
+      keepAlive: true,
+      maxSockets: Infinity,
+      maxFreeSockets: 256,
+      scheduling: 'lifo',
+      maxTotalSockets: Infinity,
+      totalSocketCount: 2,
+      proxy: [URL],
+      proxyHeaders: {},
+      connectOpts: [Object],
+      [Symbol(kCapture)]: false,
+      [Symbol(AgentBaseInternalState)]: [Object]
+    },
+    proxy: false,
+    method: 'post',
+    url: 'https://www.g4k.go.kr/ciph/0800/insertResveVisitEng.do',
+    data: 'visitDe=20250131&resveTimeNm=15%3A00&timeCd=B26&visitResveId=AQ000100&pospprDB=%7B%7D&captchaTxt=437248&idnyCnfrmNo=PA2698284&visitrCttpcNatnCd=NP&visitrCttpc=9803013319&ntcnRcvpeAgreYn=N&netfunnel_insertVisit=41DA31082199DFA112DD2CA5ADADBB3F305093653BAE821CD4F61AE2CC2963840EE220D4D0DC4220109702BD4ADDC6FB6DAC086810B2016F73400994CDFDDDBF2EDBF3855F98C7367DC870C3A67930B267FB47473180F6CFD7698BC559B2EE595760BBA220E36BA17EA191FC6F0FA5B02C302C31&emblCd=AQ&businessNm=%7B%22mainKindNm%22%3A%5B%22VISA+APPLICATION%22%5D%2C%22cffdnNm%22%3A%5B%22%EC%82%AC%EC%A6%9D%EC%8B%A0%EC%B2%AD%28Visa+application%29%22%5D%7D&grpNmListDB=VISA+APPLICATION&cffdnNmDB=%EC%82%AC%EC%A6%9D%EC%8B%A0%EC%B2%AD%28Visa+application%29&mainKind=AQ0046&subKind=AQ0047&totcnt=5&onedaycnt=2'
+  },
+  request: <ref *1> ClientRequest {
+    _events: [Object: null prototype] {
+      abort: [Function (anonymous)],
+      aborted: [Function (anonymous)],
+      connect: [Function (anonymous)],
+      error: [Function (anonymous)],
+      socket: [Function (anonymous)],
+      timeout: [Function (anonymous)],
+      finish: [Function: requestOnFinish]
+    },
+    _eventsCount: 7,
+    _maxListeners: undefined,
+    outputData: [],
+    outputSize: 0,
+    writable: true,
+    destroyed: true,
+    _last: false,
+    chunkedEncoding: false,
+    shouldKeepAlive: true,
+    maxRequestsOnConnectionReached: false,
+    _defaultKeepAlive: true,
+    useChunkedEncodingByDefault: true,
+    sendDate: false,
+    _removedConnection: false,
+    _removedContLen: false,
+    _removedTE: false,
+    strictContentLength: false,
+    _contentLength: '756',
+    _hasBody: true,
+    _trailer: '',
+    finished: true,
+    _headerSent: true,
+    _closed: true,
+    socket: TLSSocket {
+      _tlsOptions: [Object],
+      _secureEstablished: true,
+      _securePending: false,
+      _newSessionPending: false,
+      _controlReleased: true,
+      secureConnecting: false,
+      _SNICallback: null,
+      servername: 'www.g4k.go.kr',
+      alpnProtocol: false,
+      authorized: true,
+      authorizationError: null,
+      encrypted: true,
+      _events: [Object: null prototype],
+      _eventsCount: 8,
+      connecting: false,
+      _hadError: false,
+      _parent: [Socket],
+      _host: null,
+      _closeAfterHandlingError: false,
+      _readableState: [ReadableState],
+      _maxListeners: undefined,
+      _writableState: [WritableState],
+      allowHalfOpen: false,
+      _sockname: null,
+      _pendingData: null,
+      _pendingEncoding: '',
+      server: undefined,
+      _server: null,
+      ssl: [TLSWrap],
+      _requestCert: true,
+      _rejectUnauthorized: true,
+      parser: null,
+      _httpMessage: null,
+      timeout: 0,
+      [Symbol(alpncallback)]: null,
+      [Symbol(res)]: [TLSWrap],
+      [Symbol(verified)]: true,
+      [Symbol(pendingSession)]: null,
+      [Symbol(async_id_symbol)]: -1,
+      [Symbol(kHandle)]: [TLSWrap],
+      [Symbol(lastWriteQueueSize)]: 0,
+      [Symbol(timeout)]: null,
+      [Symbol(kBuffer)]: null,
+      [Symbol(kBufferCb)]: null,
+      [Symbol(kBufferGen)]: null,
+      [Symbol(kCapture)]: false,
+      [Symbol(kSetNoDelay)]: false,
+      [Symbol(kSetKeepAlive)]: true,
+      [Symbol(kSetKeepAliveInitialDelay)]: 1,
+      [Symbol(kBytesRead)]: 0,
+      [Symbol(kBytesWritten)]: 0,
+      [Symbol(connect-options)]: [Object]
+    },
+    _header: 'POST /ciph/0800/insertResveVisitEng.do HTTP/1.1\r\n' +
+      'Accept: */*\r\n' +
+      'Content-Type: application/x-www-form-urlencoded; charset=UTF-8\r\n' +
+      'Cookie: SCOUTER=z5psj3gm30jlob; JSESSIONID=dkD1oDxKwV1sScsU6-nHX0vH.cip12; NetFunnel_ID=5002%3A300%3Akey%3D41DA31082199DFA112DD2CA5ADADBB3F305093653BAE821CD4F61AE2CC2963840EE220D4D0DC4220109702BD4ADDC6FB6DAC086810B2016F73400994CDFDDDBF2EDBF3855F98C7367DC870C3A67930B267FB47473180F6CFD7698BC559B2EE595760BBA220E36BA17EA191FC6F0FA5B02C302C31%26nwait%3D0%26nnext%3D0%26tps%3D0.000000%26ttl%3D0%26ip%3Dtc.g4k.go.kr%26port%3D443\r\n' +
+      'Host: www.g4k.go.kr\r\n' +
+      'sec-ch-ua: "Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"\r\n' +
+      'X-Requested-With: XMLHttpRequest\r\n' +
+      'sec-ch-ua-mobile: ?0\r\n' +
+      'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36\r\n' +
+      'sec-ch-ua-platform: "Windows"\r\n' +
+      'Origin: https://www.g4k.go.kr\r\n' +
+      'Sec-Fetch-Site: same-origin\r\n' +
+      'Sec-Fetch-Mode: cors\r\n' +
+      'Sec-Fetch-Dest: empty\r\n' +
+      'Accept-Language: en-US,en;q=0.9\r\n' +
+      'Content-Length: 756\r\n' +
+      'Accept-Encoding: gzip, compress, deflate, br\r\n' +
+      'Connection: keep-alive\r\n' +
+      '\r\n',
+    _keepAliveTimeout: 0,
+    _onPendingData: [Function: nop],
+    agent: HttpsProxyAgent {
+      _events: [Object: null prototype],
+      _eventsCount: 2,
+      _maxListeners: undefined,
+      options: [Object],
+      requests: [Object: null prototype] {},
+      sockets: [Object: null prototype] {},
+      freeSockets: [Object: null prototype],
+      keepAliveMsecs: 1000,
+      keepAlive: true,
+      maxSockets: Infinity,
+      maxFreeSockets: 256,
+      scheduling: 'lifo',
+      maxTotalSockets: Infinity,
+      totalSocketCount: 2,
+      proxy: [URL],
+      proxyHeaders: {},
+      connectOpts: [Object],
+      [Symbol(kCapture)]: false,
+      [Symbol(AgentBaseInternalState)]: [Object]
+    },
+    socketPath: undefined,
+    method: 'POST',
+    maxHeaderSize: undefined,
+    insecureHTTPParser: undefined,
+    joinDuplicateHeaders: undefined,
+    path: '/ciph/0800/insertResveVisitEng.do',
+    _ended: true,
+    res: IncomingMessage {
+      _readableState: [ReadableState],
+      _events: [Object: null prototype],
+      _eventsCount: 4,
+      _maxListeners: undefined,
+      socket: null,
+      httpVersionMajor: 1,
+      httpVersionMinor: 1,
+      httpVersion: '1.1',
+      complete: true,
+      rawHeaders: [Array],
+      rawTrailers: [],
+      joinDuplicateHeaders: undefined,
+      aborted: false,
+      upgrade: false,
+      url: '',
+      method: null,
+      statusCode: 200,
+      statusMessage: 'OK',
+      client: [TLSSocket],
+      _consuming: true,
+      _dumped: false,
+      req: [Circular *1],
+      responseUrl: 'https://www.g4k.go.kr/ciph/0800/insertResveVisitEng.do',
+      redirects: [],
+      [Symbol(kCapture)]: false,
+      [Symbol(kHeaders)]: [Object],
+      [Symbol(kHeadersCount)]: 28,
+      [Symbol(kTrailers)]: null,
+      [Symbol(kTrailersCount)]: 0
+    },
+    aborted: false,
+    timeoutCb: null,
+    upgradeOrConnect: false,
+    parser: null,
+    maxHeadersCount: null,
+    reusedSocket: true,
+    host: 'www.g4k.go.kr',
+    protocol: 'https:',
+    _redirectable: Writable {
+      _writableState: [WritableState],
+      _events: [Object: null prototype],
+      _eventsCount: 3,
+      _maxListeners: undefined,
+      _options: [Object],
+      _ended: true,
+      _ending: true,
+      _redirectCount: 0,
+      _redirects: [],
+      _requestBodyLength: 756,
+      _requestBodyBuffers: [],
+      _onNativeResponse: [Function (anonymous)],
+      _currentRequest: [Circular *1],
+      _currentUrl: 'https://www.g4k.go.kr/ciph/0800/insertResveVisitEng.do',
+      [Symbol(kCapture)]: false
+    },
+    [Symbol(kCapture)]: false,
+    [Symbol(kBytesWritten)]: 0,
+    [Symbol(kNeedDrain)]: false,
+    [Symbol(corked)]: 0,
+    [Symbol(kOutHeaders)]: [Object: null prototype] {
+      accept: [Array],
+      'content-type': [Array],
+      cookie: [Array],
+      host: [Array],
+      'sec-ch-ua': [Array],
+      'x-requested-with': [Array],
+      'sec-ch-ua-mobile': [Array],
+      'user-agent': [Array],
+      'sec-ch-ua-platform': [Array],
+      origin: [Array],
+      'sec-fetch-site': [Array],
+      'sec-fetch-mode': [Array],
+      'sec-fetch-dest': [Array],
+      'accept-language': [Array],
+      'content-length': [Array],
+      'accept-encoding': [Array]
+    },
+    [Symbol(errored)]: null,
+    [Symbol(kHighWaterMark)]: 16384,
+    [Symbol(kRejectNonStandardBodyWrites)]: false,
+    [Symbol(kUniqueHeaders)]: null
+  },
+  data: {
+    param: {
+      ntcnRcvpeAgreYn: 'N',
+      cffdnNmDB: '사증신청(Visa application)',
+      visitResveId: 'AQ000100',
+      mainKind: 'AQ0046',
+      captchaTxt: '437248',
+      resveTimeNm: '15:00',
+      idnyCnfrmNo: 'PA2698284',
+      totcnt: '5',
+      grpNmListDB: 'VISA APPLICATION',
+      onedaycnt: '2',
+      timeCd: 'B26',
+      visitrCttpcNatnCd: 'NP',
+      subKind: 'AQ0047',
+      visitrCttpc: '9803013319',
+      businessNm: '{"mainKindNm":["VISA APPLICATION"],"cffdnNm":["사증신청(Visa application)"]}',
+      netfunnel_insertVisit: '41DA31082199DFA112DD2CA5ADADBB3F305093653BAE821CD4F61AE2CC2963840EE220D4D0DC4220109702BD4ADDC6FB6DAC086810B2016F73400994CDFDDDBF2EDBF3855F98C7367DC870C3A67930B267FB47473180F6CFD7698BC559B2EE595760BBA220E36BA17EA191FC6F0FA5B02C302C31',
+      pospprDB: '{}',
+      emblCd: 'AQ',
+      visitDe: '20250131',
+      mainKindNm: 'VISA APPLICATION',
+      subKindNm: '사증신청(Visa application)',
+      usrId: 'pradiptamang98284@gmail.com',
+      natnCd: '446',
+      visitrNm: '프라딥타망',
+      visitrAddr: '',
+      visitrEmail: 'pradiptamang98284@gmail.com',
+      remk: null,
+      resveRecptNo: 'IAQ1BE78B3367D203247',
+      cffdnCd: 'WSDL000021',
+      statCd: 'R',
+      esbIp: '10.188.133.27',
+      esbPort: '57100',
+      esbType: '1'
+    },
+    wsdlErrorNm: '실패'
+  }
+}
+Date available:  [
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250113' },
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250114' },
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250115' },
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250116' },
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250117' },
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250120' },
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250121' },
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250122' },
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250123' },
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250124' },
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250128' },
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250129' },
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250130' },
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250131' }
+]
+13
+Selected Time - 15:00 ~ 15:30
+User: "Pradip Tamang" - Finding Captcha Text...
+User: "Pradip Tamang" - Captcha Not Found, trying again.
+^C
