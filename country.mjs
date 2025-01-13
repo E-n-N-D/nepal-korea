@@ -27,11 +27,11 @@
 // };
 
 // // srilanka
-// const srilanka = {
-//   country: "sri lanka",
-//   serviceCode: "SK0025",
-//   nationCd: "SK",
-// };
+const srilanka = {
+  // country: "sri lanka",
+  mainKind: "SK0025",
+  emblCd: "SK",
+};
 
 const nepalDoc = {
   emblCd: 'NP',

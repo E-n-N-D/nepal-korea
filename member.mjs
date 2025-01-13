@@ -12,6 +12,7 @@ import {
 } from "./utilities.mjs";
 import proxyUrl from "./proxy.mjs";
 import users from "./users/document-authorization/first.mjs";
+import { log } from "console";
 
 class PreLoggedInUser {
   constructor(user, index) {
@@ -189,6 +190,10 @@ class PreLoggedInUser {
     while (filteredDates.length == 0) {
       try {
         const selectableDates = await inte.post(visitReserveCalendarUrl, dta);
+
+        let allDates =
+          selectableDates.data.visitReserveCalendarYesResult.flat();
+        console.log("Fetching available dates", allDates);
         filteredDates = selectableDates.data.visitReserveCalendarYesResult
           .flat()
           .filter(
@@ -200,7 +205,7 @@ class PreLoggedInUser {
       } catch (error) {
         console.log(error.message);
       }
-      await delayForSeconds(0.1);
+      await delayForSeconds(1);
     }
 
     const pickedDate = filteredDates[filteredDates.length - 1].visitDe;
@@ -251,6 +256,17 @@ class PreLoggedInUser {
       this.completeReservationData
     ).toString();
 
+    console.log("Last Request Data", resvData);
+
+    console.log("Last Request header", {
+      ...this.config.headers,
+      ...{
+        Cookie:
+          buildCookieHeader(this.cookies) +
+          `; NetFunnel_ID=${encodeURIComponent(n_cookie)}`,
+      },
+    });
+
     let last_resp = await this.instance.post(
       "https://www.g4k.go.kr/ciph/0800/insertResveVisitEng.do",
       resvData,
@@ -265,6 +281,8 @@ class PreLoggedInUser {
         },
       }
     );
+
+    console.log("Last request response", last_resp.data);
 
     if (last_resp.data?.wsdlErrorNm && last_resp.data.wsdlErrorNm != "실패") {
       this.logMessage(
