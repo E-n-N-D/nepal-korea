@@ -33,6 +33,12 @@ const srilanka = {
   emblCd: "SK",
 };
 
+const nepalVisa = {
+  // country: "sri lanka",
+  mainKind: "NP0023",
+  emblCd: "SK",
+};
+
 const nepalDoc = {
   emblCd: 'NP',
   businessNm:`{"mainKindNm":["공증· 영사확인(Documents Authentication)"],"cffdnNm":["공증· 영사확인(Documents Authentication)"]}`,
@@ -45,17 +51,17 @@ const nepalDoc = {
   // visitrCttpcNatnCd: "NP",
 }
 
-const nepalVisa = {
-  emblCd: 'NP',
-  businessNm: `{"mainKindNm":["유학사증(Study VISA)"],"cffdnNm":["유학사증(Study VISA)"]}`,
-  grpNmListDB: '유학사증(Study VISA)',
-  cffdnNmDB: '유학사증(Study VISA)',
-  mainKind: 'NP0025',
-  subKind: 'NP0025',
-  totcnt: '1',
-  onedaycnt: '1',
-  // visitrCttpcNatnCd: "NP",
-}
+// const nepalVisa = {
+//   emblCd: 'NP',
+//   businessNm: `{"mainKindNm":["유학사증(Study VISA)"],"cffdnNm":["유학사증(Study VISA)"]}`,
+//   grpNmListDB: '유학사증(Study VISA)',
+//   cffdnNmDB: '유학사증(Study VISA)',
+//   mainKind: 'NP0025',
+//   subKind: 'NP0025',
+//   totcnt: '1',
+//   onedaycnt: '1',
+//   // visitrCttpcNatnCd: "NP",
+// }
 
 const nzVisa = {
   emblCd: 'AQ',
@@ -93,4 +99,4 @@ const nepalFamily = {
   // visitrCttpcNatnCd: "NP",
 }
 
-export const country = nepalDoc;
+export const country = nepalVisa;

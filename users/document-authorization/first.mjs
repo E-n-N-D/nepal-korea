@@ -1,10 +1,10 @@
 const users = [
   {
-    name: "Pradip Tamang",
-    email: "pradiptamang98284@gmail.com",
+    name: "Nishan Pandey",
+    email: "pandeynishan26@gmail.com ",
     password: "Email@590jrt",
-    number: "9803013319",
-    passportNo: "PA2698284",
+    number: "9825002295",
+    passportNo: "BA0169879",
   },
 ];
 
