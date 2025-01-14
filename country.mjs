@@ -36,7 +36,7 @@ const srilanka = {
 const nepalVisa = {
   // country: "sri lanka",
   mainKind: "NP0023",
-  emblCd: "SK",
+  emblCd: "NP",
 };
 
 const nepalDoc = {
