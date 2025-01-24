@@ -63,7 +63,7 @@ class PreLoggedInUser {
 
     this.instance = axios.create({
       withCredentials: true,
-      // httpsAgent: new HttpsProxyAgent(proxyUrl, { keepAlive: true }),
+      httpsAgent: new HttpsProxyAgent(proxyUrl, { keepAlive: true }),
       proxy: false,
     });
 
@@ -160,7 +160,7 @@ class PreLoggedInUser {
   async getTime() {
     const inte = axios.create({
       withCredentials: true,
-      // httpsAgent: new HttpsProxyAgent(proxyUrl, { keepAlive: true }),
+      httpsAgent: new HttpsProxyAgent(proxyUrl, { keepAlive: true }),
       proxy: false,
       headers: {
         Host: "www.g4k.go.kr",
@@ -205,7 +205,7 @@ class PreLoggedInUser {
       } catch (error) {
         console.log(error.message);
       }
-      await delayForSeconds(20);
+      await delayForSeconds(5);
     }
 
     const pickedDate = filteredDates[filteredDates.length - 1].visitDe;
