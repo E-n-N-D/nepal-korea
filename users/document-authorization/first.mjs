@@ -1,8 +1,8 @@
 const users = [
   {
-    name: "Sujal Shrestha",
-    email: "sujalshrestha90620@gmail.com",
-    password: "Email@590jrt",
+    name: "Rita Nepali",
+    email: "ritanepali1220@gmail.com",
+    password: "wctm faxl mfjm txhe",
     number: "9812349020",
     passportNo: "PA1190620",
   },
