@@ -1,0 +1,1022 @@
+'<script src="/js/common/jquery.cookie.js"></script>\r\n' +
+    '\r\n' +
+    '<script src="/js/new/v2/common.js?ver=20240228"></script>\t<!-- 2024-02-28  v2적용 -->\r\n' +
+    '<script src="/js/common/v2/ui.js?ver=20240308-01b"></script>\t<!-- 2023-11-28  v2적용, 2024-03-08 -->\r\n' +
+    '<script src="/js/common/v2/tui-date-picker.js?ver=20240109"></script>\t<!-- 2024-01-09 toast ui 달력 적용 -->\r\n' +
+    '<script src="/js/common/v2/project.js?ver=20240417"></script>\t<!-- 2024-01-26  v2적용, 오픈 적용 - 2024.04.04 -->\r\n' +
+    '<script src="/js/common/v2/swiper.js"></script>\t<!-- 2024-01-29  swiper -->\r\n' +
+    '<script src="/js/common/v2/common.js?ver=20240509" ></script>\t<!-- 2024-02-19 v2적용 -->\r\n' +
+    '\r\n' +
+    '<!-- jquery chosen -->\r\n' +
+    '<script src="/js/jquery-chosen/chosen.jquery.js"></script>\r\n' +
+    '<link type="text/css" href="/js/jquery-chosen/chosen.css" rel="stylesheet">\r\n' +
+    '\r\n' +
+    '<!--[if lt IE 9]>\r\n' +
+    '<script src="/js/common/html5shiv.min.js"></script>\r\n' +
+    '<![endif]-->\r\n' +
+    '\r\n' +
+    '<script>\r\n' +
+    '\tvar gfv_contextpath = "";\r\n' +
+    '\tvar gfv_mode = "real";\r\n' +
+    '\t// Netfunnel - 2024.04.16 김종현\r\n' +
+    '\t// -- 시작\r\n' +
+    "\tvar netfunnel = document.createElement('script');\r\n" +
+    "\tvar netfunnel_skin = document.createElement('script');\r\n" +
+    "\tvar mbuster_api_script = document.createElement('script');\r\n" +
+    "\tvar mbuster_meta_script = document.createElement('script');\r\n" +
+    "\tif(gfv_mode == 'real'){\r\n" +
+    '\t\t//넷퍼넬\r\n' +
+    "\t\tnetfunnel.src = '/js/netfunnel/netfunnel.js';\r\n" +
+    "\t\tnetfunnel_skin.src = '/js/netfunnel/test_skin.js';\r\n" +
+    '\t\tdocument.head.appendChild(netfunnel);\r\n' +
+    '\t\tdocument.head.appendChild(netfunnel_skin);\r\n' +
+    '\r\n' +
+    '\t}\r\n' +
+    '\t// -- 끝\r\n' +
+    '\r\n' +
+    '\tvar gfn_passPhrase \t\t= "ZzRrMDJDcnlwdG9qc0tleQ=="; // 복호화[2020-04-27 추가]\r\n' +
+    '\t// validation 결과 alert 형태로 표현\r\n' +
+    '\t$.validator.setDefaults({\r\n' +
+    '\t\tonkeyup: false,\r\n' +
+    '\t\tonclick: false,\r\n' +
+    '\t\tonfocusout: false,\r\n' +
+    '\t\tshowErrors: function(errorMap, errorList) {\r\n' +
+    '\t\t\tif(this.numberOfInvalids()) {\r\n' +
+    '\t\t\t\talert(errorList[0].message);\r\n' +
+    '\t\t\t}\r\n' +
+    '\t\t}\r\n' +
+    '\t});\r\n' +
+    '\r\n' +
+    '\t//모바일모드 구분\r\n' +
+    '\tvar ua = window.navigator.userAgent;\r\n' +
+    '\tua = ua.toLowerCase();\r\n' +
+    '\tvar platform = {};\r\n' +
+    '\tvar matched = {};\r\n' +
+    '\tvar mobileYn = "";\r\n' +
+    '\tvar platform_match = /(ipad)/.exec(ua) || /(ipod)/.exec(ua)\r\n' +
+    '\t\t|| /(windows phone)/.exec(ua) || /(iphone)/.exec(ua)\r\n' +
+    '\t\t|| /(kindle)/.exec(ua) || /(silk)/.exec(ua) || /(android)/.exec(ua)\r\n' +
+    '\t\t|| /(win)/.exec(ua) || /(mac)/.exec(ua) || /(linux)/.exec(ua)\r\n' +
+    '\t\t|| /(cros)/.exec(ua) || /(playbook)/.exec(ua)\r\n' +
+    '\t\t|| /(bb)/.exec(ua) || /(blackberry)/.exec(ua)\r\n' +
+    '\t\t|| [];\r\n' +
+    '\r\n' +
+    '\tmatched.platform = platform_match[0] || "";\r\n' +
+    '\r\n' +
+    '\tif(matched.platform) {\r\n' +
+    '\t\tplatform[matched.platform] = true;\r\n' +
+    '\t}\r\n' +
+    '\r\n' +
+    '\tif(platform.android || platform.bb || platform.blackberry\r\n' +
+    '\t\t\t|| platform.ipad || platform.iphone\r\n' +
+    '\t\t\t|| platform.ipod || platform.kindle\r\n' +
+    '\t\t\t|| platform.playbook || platform.silk\r\n' +
+    '\t\t\t|| platform["windows phone"]) {\r\n' +
+    '\t\tmobileYn = "Y";\r\n' +
+    '\t}\r\n' +
+    '\r\n' +
+    '\tif(platform.cros || platform.mac || platform.linux || platform.win) {\r\n' +
+    '\t\tmobileYn = "N";\r\n' +
+    '\t}\r\n' +
+    '\r\n' +
+    '</script>\r\n' +
+    '\r\n' +
+    '<!-- common javascript -->\r\n' +
+    '<script src="/js/common/projectMsg.js?ver=20241112" ></script>\r\n' +
+    '<script src="/js/common/stringUtil.js" ></script>\r\n' +
+    '<script src="/js/common/fileUtil.js" ></script>\r\n' +
+    '\r\n' +
+    '<!-- AES Encrypt/Decrypt  복호화[2020-04-27 추가]  -->\r\n' +
+    '<script type="text/javascript" src="/js/crypto-js/crypto-js.min.js"></script>\r\n' +
+    '<script type="text/javascript" src="/js/crypto-js/crypto.js"></script>\r\n' +
+    '\r\n' +
+    '<!-- Markany WebDRM -->\r\n' +
+    '<!--\r\n' +
+    '<script src="/solution/markany/webdrm/jQuery.XDomainRequest.js"></script>\r\n' +
+    '<script src="/solution/markany/webdrm/MaWebDRM_Common.js"></script>\r\n' +
+    '<script src="/solution/markany/webdrm/MaWebDRM.js"></script>\r\n' +
+    '-->\r\n' +
+    '\r\n' +
+    '<!-- smart editor -->\r\n' +
+    '<script src="/solution/smarteditor/js/service/HuskyEZCreator.js"></script>\r\n' +
+    '\r\n' +
+    '\r\n' +
+    '<link rel="stylesheet" type="text/css" href="/css/slick.css">\r\n' +
+    '<script src="/js/new/slick.min.js"></script>\r\n' +
+    '<script src="/js/new/slick.acc.js?ver=20210504-01"></script>\r\n' +
+    '<title>재외동포365민원포털</title>\r\n' +
+    '<script type="text/javascript"> \r\n' +
+    '\t\r\n' +
+    '\t\t\r\n' +
+    '\turlPrefix = "";\r\n' +
+    '\t\t\t\r\n' +
+    '\t\t\r\n' +
+    '\t\t\r\n' +
+    '\t\r\n' +
+    '\r\n' +
+    '\t$(function(){\r\n' +
+    '\t\t//넷퍼넬 자원회수 - 2024.04.16 김종현\r\n' +
+    "\t\tif(typeof NetFunnel_Action === 'function'){\r\n" +
+    '    \t\tNetFunnel_Complete();\r\n' +
+    '    \t}\r\n' +
+    '\r\n' +
+    '\r\n' +
+    "    \tvar validateErrorMessage =  '';\r\n" +
+    '\r\n' +
+    '\t\t if(validateErrorMessage.length > 0){\r\n' +
+    '\t\t \talert(validateErrorMessage);\r\n' +
+    '\t\t }\r\n' +
+    '\r\n' +
+    '\t\t//오늘 하루 이창 열지 않음 기능\r\n' +
+    '\t\tif($.cookie("nonOpenTodayYn") !="Y"){ //오늘만 하루 이창 열지 않음 눌렀을때\r\n' +
+    '\t\t\t$("#layer_popup").show();\r\n' +
+    '\t\t}else{\r\n' +
+    '\t\t\t$("#layer_popup").hide();\r\n' +
+    '\t\t}\r\n' +
+    '\r\n' +
+    "\t\t$('.main_popup .list').on('init', function(event, slick) {\r\n" +
+    `\t\t\t$('.chk').append('<div class="slick-counter"><span class="current"></span> / <span class="total"></span></div>');\r\n` +
+    "\t\t\t$('.main_popup .current').text(slick.currentSlide + 1);\r\n" +
+    "\t\t\t$('.main_popup .total').text(slick.slideCount);\r\n" +
+    '\t\t}).slick({\r\n' +
+    '\t\t\taccessibility: true,/*190620 추가*/\r\n' +
+    '\t\t\tinfinite: true,\r\n' +
+    '\t\t\tarrows: true,\r\n' +
+    '\t\t\tdots: false,\r\n' +
+    '\t\t\tslidesToShow: 1,\r\n' +
+    '\t\t\tslidesToScroll: 1,\r\n' +
+    '\t\t\tswipeToSlide: true,\r\n' +
+    '\t\t\tfocusOnSelect: true,\r\n' +
+    '\t\t\tautoplay: true,\r\n' +
+    '\t\t\tautoplaySpeed: 5000,\r\n' +
+    '\t    })\r\n' +
+    "\t\t.on('beforeChange', function(event, slick, currentSlide, nextSlide) {\r\n" +
+    "\t\t\t$('.main_popup .current').text(nextSlide + 1);\r\n" +
+    '\t\t});\r\n' +
+    '\t});\r\n' +
+    '\r\n' +
+    '\t$(document).ready(function(){\r\n' +
+    '\t\tfn_init();\r\n' +
+    '\r\n' +
+    "\t\t$('#layer_popup').mouseover( function() {\r\n" +
+    '\r\n' +
+    '\t\t\t$("button[name=slickBtn]").show();\r\n' +
+    '\t\t});\r\n' +
+    '\r\n' +
+    "\t\t$('#layer_popup').mouseleave( function() {\r\n" +
+    '\r\n' +
+    '\t\t\t$("button[name=slickBtn]").hide();\r\n' +
+    '\t\t});\r\n' +
+    '\r\n' +
+    '\t\t$("#allSc").keyup(function(key){\r\n' +
+    '\t\t\tif(key.keyCode == 13){\r\n' +
+    '\t\t\t\tfn_hSearch2();\r\n' +
+    '\t\t\t}\r\n' +
+    '\t\t})\r\n' +
+    '\r\n' +
+    '    });\r\n' +
+    '\r\n' +
+    '\tfunction fn_init(){\r\n' +
+    '\t\t/* cookiedata = document.cookie; */\r\n' +
+    '\r\n' +
+    '\t\t\r\n' +
+    "\t\t$('#layer_popup').hide();\r\n" +
+    '\t\t\r\n' +
+    '\r\n' +
+    '\t\t\r\n' +
+    ' \t\t\r\n' +
+    '\t\t\t$("#layer03").empty();\r\n' +
+    '\t\t\r\n' +
+    '\r\n' +
+    '\t\t/*  */\r\n' +
+    '\r\n' +
+    '\r\n' +
+    '\t\t//우측배너 init\r\n' +
+    '\t\tobjItem = $(".main_board .layout .board_bn .item li");\r\n' +
+    '\t\titemWidth = objItem.width();\r\n' +
+    '\t\tautoBanner();\t\t//init\r\n' +
+    '\t\t//auto banner play\r\n' +
+    '\t\t$(".main_board .layout .board_bn .cmd .play").click(function(e) {\r\n' +
+    '\t\t\te.preventDefault();\r\n' +
+    '\t\t\tautoBanner();\r\n' +
+    '\t\t\tfnChgBnCtl(true);\r\n' +
+    '\t\t});\r\n' +
+    '\t\t//next button click\r\n' +
+    '\t\t$(".main_board .layout .board_bn .cmd .next").click(function(e) {\r\n' +
+    '\t\t\te.preventDefault();\r\n' +
+    '\r\n' +
+    '\t\t\tif (cntB < objItem.size() - 1) {\r\n' +
+    '\t\t\t\tfnMoveItemL(cntB, cntB +1);\r\n' +
+    '\t\t\t\tcntB++;\r\n' +
+    '\t\t\t} else {\r\n' +
+    '\t\t\t\tfnMoveItemL(cntB, 0);\r\n' +
+    '\t\t\t\tcntB = 0;\r\n' +
+    '\t\t\t}\r\n' +
+    '\t\t\t$(".main_board .layout .board_bn .cmd > span span:eq(0)").text( cntB+1 );\r\n' +
+    '\t\t\tclearInterval(autoBn);\r\n' +
+    '\t\t\tfnChgBnCtl(false);\r\n' +
+    '\t\t});\r\n' +
+    '\r\n' +
+    '\t\t$(".stop").click(function(e) {\t\t//정지\r\n' +
+    '\t\t\te.preventDefault();\r\n' +
+    '\t\t\tclearInterval(autoBn);\r\n' +
+    '\t\t\tfnChgBnCtl(false);\r\n' +
+    '\t\t});\r\n' +
+    '\r\n' +
+    '\t\t$("button[name=slickBtn]").hide();\r\n' +
+    '\r\n' +
+    '\t\t//prev button click\r\n' +
+    '\t\t$(".main_board .layout .board_bn .cmd .prev").click(function(e) {\r\n' +
+    '\t\t\te.preventDefault();\r\n' +
+    '\t\t\tvar lastIdx = objItem.index(objItem.last());\r\n' +
+    '\r\n' +
+    '\t\t\tif (cntB > 0) {\r\n' +
+    '\t\t\t\tfnMoveItemR(cntB, cntB - 1);\r\n' +
+    '\t\t\t\tcntB--;\r\n' +
+    '\t\t\t} else {\r\n' +
+    '\t\t\t\tfnMoveItemR(cntB, lastIdx);\r\n' +
+    '\t\t\t\tcntB = lastIdx;\r\n' +
+    '\t\t\t}\r\n' +
+    '\t\t\t$(".main_board .layout .board_bn .cmd > span span:eq(0)").text( cntB + 1);\r\n' +
+    '\t\t\tclearInterval(autoBn);\r\n' +
+    '\t\t\tfnChgBnCtl(false);\r\n' +
+    '\t\t});\r\n' +
+    '\r\n' +
+    '\t}\r\n' +
+    '\r\n' +
+    '\tfunction main_setCookie(name, value, expiredays) {\r\n' +
+    '\t\tvar todayDate = new Date();\r\n' +
+    '\t\ttodayDate.setDate(todayDate.getDate() + expiredays);\r\n' +
+    '\t\tdocument.cookie = name + "=" + escape(value) + "; path=/; expires=" + todayDate.toGMTString() + ";";\r\n' +
+    '\t}\r\n' +
+    '\r\n' +
+    '\tfunction main_closeWin(layer_name, checkbox_name) {\r\n' +
+    '\t\tif($("#" + checkbox_name).is(":checked")) {\r\n' +
+    '\t\t\tmain_setCookie(layer_name, "done", 1);\r\n' +
+    '\t\t}\r\n' +
+    '\r\n' +
+    '\t\t$("#"+layer_name).hide();\r\n' +
+    '\t}\r\n' +
+    '\r\n' +
+    '\r\n' +
+    '\tvar mberClssCd =  "";\r\n' +
+    '\r\n' +
+    '\tvar sessionRegnCd = "";\r\n' +
+    '\tvar sessionNatnCd = "";\r\n' +
+    '\tvar sessionEmblCd = "";\r\n' +
+    '\r\n' +
+    '\tvar cookieRegnCd = "";\r\n' +
+    '\tvar cookieNatnCd = "";\r\n' +
+    '\tvar cookieEmblCd = "";\r\n' +
+    '\r\n' +
+    '\r\n' +
+    '\r\n' +
+    '\r\n' +
+    '\r\n' +
+    '\t/*****************\r\n' +
+    '\t *하단 추천사이트 롤링 *\r\n' +
+    '\t *****************/\r\n' +
+    '\tvar $interval;\r\n' +
+    '\tvar delayTime = 6000;\r\n' +
+    '\tvar aniSpeed = 450;\r\n' +
+    '\tvar $objBn;\r\n' +
+    '\tvar item_width;\r\n' +
+    '\tfunction slidetimer() {\r\n' +
+    '\t\t$interval = setInterval(function() {\r\n' +
+    '\t\t\tslideLeft();\r\n' +
+    '\t\t}, delayTime);\r\n' +
+    '\t}\r\n' +
+    '\tfunction slideLeft() {\t\t//to Left\r\n' +
+    '\t\t$objBn.stop().animate({\r\n' +
+    '\t\t\tleft : "-="+item_width},\r\n' +
+    '\t\taniSpeed, function() {\r\n' +
+    '\t\t\t$(this).css({"left" : 0});\r\n' +
+    '\t\t\t$objBn.append( $objBn.children("li").eq(0) );\r\n' +
+    '\t\t});\r\n' +
+    '\t}\r\n' +
+    '\tfunction slideRight() {\t\t//to Right\r\n' +
+    '\t\t$objBn.stop().animate({\r\n' +
+    '\t\t\tleft : "+="+item_width},\r\n' +
+    '\t\taniSpeed, function() {\r\n' +
+    '\t\t\t$(this).css({"left" : 0});\r\n' +
+    '\t\t\t$objBn.prepend( $objBn.children("li").last() );\r\n' +
+    '\t\t});\r\n' +
+    '\t}\r\n' +
+    '\tfunction fnPlayBtn(order) {\r\n' +
+    '\t\tif (order=="pause") {\t\t//정지\r\n' +
+    '\t\t\t$(".pause").hide();\r\n' +
+    '\t\t\t$(".play").show();\r\n' +
+    '\t\t} else {\t\t//재생\r\n' +
+    '\t\t\t$(".play").hide();\r\n' +
+    '\t\t\t$(".pause").show();\r\n' +
+    '\t\t}\r\n' +
+    '\t}\r\n' +
+    '\t/**************'... 128246 more characters
+}
+Data not zero:  {
+  status: 200,
+  statusText: 'OK',
+  headers: Object [AxiosHeaders] {
+    date: 'Sun, 26 Jan 2025 10:06:03 GMT',
+    server: 'Apache',
+    'cache-control': 'no-store',
+    'strict-transport-security': 'max-age=31536000 ; includeSubDomains',
+    'x-xss-protection': '1; mode=block',
+    'x-frame-options': 'DENY',
+    'x-content-type-options': 'nosniff',
+    'access-control-allow-origin': '*',
+    'content-type': 'text/html;charset=UTF-8',
+    'set-cookie': [ 'JSESSIONID=7QQL9GG3iCWapWlXAEllW9eT.cip21; Path=/; Secure' ],
+    'keep-alive': 'timeout=15, max=100',
+    connection: 'Keep-Alive',
+    'transfer-encoding': 'chunked'
+  },
+  config: {
+    transitional: {
+      silentJSONParsing: true,
+      forcedJSONParsing: true,
+      clarifyTimeoutError: false
+    },
+    adapter: [ 'xhr', 'http', 'fetch' ],
+    transformRequest: [ [Function: transformRequest] ],
+    transformResponse: [ [Function: transformResponse] ],
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: -1,
+    maxBodyLength: -1,
+    env: { FormData: [Function], Blob: [class Blob] },
+    validateStatus: [Function: validateStatus],
+    headers: Object [AxiosHeaders] {
+      Accept: '*/*',
+      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+      Cookie: 'SCOUTER=z3lpbmphl567h0; JSESSIONID=cIj5kbLq1eF2rTTq1BMBGcSN.cip21; NetFunnel_ID=5002%3A300%3Akey%3DF4A769174066ECA7DD3F978FD4B237C6ECB24A15C5FD86779D5FC95EA709ACE8ACCA151B8A0EF1B03A3BC93CD633728A9808F5CB930E39C68E37E4F5B96415E1773A3F7C96C21462CCC391B2711EB6E635FE2E0D83CAA9B732AEE5DB6BDF92528032EF71507F49CF4FEC5ED09BFF20BF312C302C31%26nwait%3D0%26nnext%3D0%26tps%3D0.000000%26ttl%3D0%26ip%3Dtc.g4k.go.kr%26port%3D443',
+      Host: 'www.g4k.go.kr',
+      'sec-ch-ua': '"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
+      'X-Requested-With': 'XMLHttpRequest',
+      'sec-ch-ua-mobile': '?0',
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+      'sec-ch-ua-platform': '"Windows"',
+      Origin: 'https://www.g4k.go.kr',
+      'Sec-Fetch-Site': 'same-origin',
+      'Sec-Fetch-Mode': 'cors',
+      'Sec-Fetch-Dest': 'empty',
+      'Accept-Language': 'en-US,en;q=0.9',
+      'Content-Length': '758',
+      'Accept-Encoding': 'gzip, compress, deflate, br'
+    },
+    withCredentials: true,
+    httpsAgent: HttpsProxyAgent {
+      _events: [Object: null prototype],
+      _eventsCount: 2,
+      _maxListeners: undefined,
+      options: [Object],
+      requests: [Object: null prototype] {},
+      sockets: [Object: null prototype] {},
+      freeSockets: [Object: null prototype],
+      keepAliveMsecs: 1000,
+      keepAlive: true,
+      maxSockets: Infinity,
+      maxFreeSockets: 256,
+      scheduling: 'lifo',
+      maxTotalSockets: Infinity,
+      totalSocketCount: 2,
+      proxy: URL {},
+      proxyHeaders: {},
+      connectOpts: [Object],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false,
+      [Symbol(AgentBaseInternalState)]: [Object]
+    },
+    method: 'post',
+    url: 'https://www.g4k.go.kr/ciph/0800/insertResveVisitEng.do',
+    data: 'visitDe=20250131&resveTimeNm=15%3A30&timeCd=B27&visitResveId=AQ000100&pospprDB=%7B%7D&captchaTxt=024865&idnyCnfrmNo=PA1190620&visitrCttpcNatnCd=NP&visitrCttpc=9812349020&ntcnRcvpeAgreYn=N&netfunnel_insertVisit=F4A769174066ECA7DD3F978FD4B237C6ECB24A15C5FD86779D5FC95EA709ACE8ACCA151B8A0EF1B03A3BC93CD633728A9808F5CB930E39C68E37E4F5B96415E1773A3F7C96C21462CCC391B2711EB6E635FE2E0D83CAA9B732AEE5DB6BDF92528032EF71507F49CF4FEC5ED09BFF20BF312C302C31&emblCd=AQ&businessNm=%7B%22mainKindNm%22%3A%5B%22VISA+APPLICATION%22%5D%2C%22cffdnNm%22%3A%5B%22%EC%82%AC%EC%A6%9D%EC%8B%A0%EC%B2%AD%28Visa+application%29%22%5D%7D&grpNmListDB=VISA+APPLICATION&cffdnNmDB=%EC%82%AC%EC%A6%9D%EC%8B%A0%EC%B2%AD%28Visa+application%29&mainKind=AQ0046&subKind=AQ0047&totcnt=5&onedaycnt=2'
+  },
+  request: <ref *1> ClientRequest {
+    _events: [Object: null prototype] {
+      abort: [Function (anonymous)],
+      aborted: [Function (anonymous)],
+      connect: [Function (anonymous)],
+      error: [Function (anonymous)],
+      socket: [Function (anonymous)],
+      timeout: [Function (anonymous)],
+      finish: [Function: requestOnFinish]
+    },
+    _eventsCount: 7,
+    _maxListeners: undefined,
+    outputData: [],
+    outputSize: 0,
+    writable: true,
+    destroyed: true,
+    _last: true,
+    chunkedEncoding: false,
+    shouldKeepAlive: true,
+    maxRequestsOnConnectionReached: false,
+    _defaultKeepAlive: true,
+    useChunkedEncodingByDefault: false,
+    sendDate: false,
+    _removedConnection: false,
+    _removedContLen: false,
+    _removedTE: false,
+    strictContentLength: false,
+    _contentLength: 0,
+    _hasBody: true,
+    _trailer: '',
+    finished: true,
+    _headerSent: true,
+    _closed: true,
+    socket: TLSSocket {
+      _tlsOptions: [Object],
+      _secureEstablished: true,
+      _securePending: false,
+      _newSessionPending: false,
+      _controlReleased: true,
+      secureConnecting: false,
+      _SNICallback: null,
+      servername: 'www.g4k.go.kr',
+      alpnProtocol: false,
+      authorized: true,
+      authorizationError: null,
+      encrypted: true,
+      _events: [Object: null prototype],
+      _eventsCount: 8,
+      connecting: false,
+      _hadError: false,
+      _parent: [Socket],
+      _host: null,
+      _closeAfterHandlingError: false,
+      _readableState: [ReadableState],
+      _writableState: [WritableState],
+      allowHalfOpen: false,
+      _maxListeners: undefined,
+      _sockname: null,
+      _pendingData: null,
+      _pendingEncoding: '',
+      server: undefined,
+      _server: null,
+      ssl: [TLSWrap],
+      _requestCert: true,
+      _rejectUnauthorized: true,
+      parser: null,
+      _httpMessage: null,
+      timeout: 0,
+      [Symbol(alpncallback)]: null,
+      [Symbol(res)]: [TLSWrap],
+      [Symbol(verified)]: true,
+      [Symbol(pendingSession)]: null,
+      [Symbol(async_id_symbol)]: -1,
+      [Symbol(kHandle)]: [TLSWrap],
+      [Symbol(lastWriteQueueSize)]: 0,
+      [Symbol(timeout)]: null,
+      [Symbol(kBuffer)]: null,
+      [Symbol(kBufferCb)]: null,
+      [Symbol(kBufferGen)]: null,
+      [Symbol(shapeMode)]: true,
+      [Symbol(kCapture)]: false,
+      [Symbol(kSetNoDelay)]: false,
+      [Symbol(kSetKeepAlive)]: true,
+      [Symbol(kSetKeepAliveInitialDelay)]: 1,
+      [Symbol(kBytesRead)]: 0,
+      [Symbol(kBytesWritten)]: 0,
+      [Symbol(connect-options)]: [Object]
+    },
+    _header: 'GET /cipl/0100/login.do?authFailed=Y HTTP/1.1\r\n' +
+      'Accept: */*\r\n' +
+      'Cookie: SCOUTER=z3lpbmphl567h0; JSESSIONID=cIj5kbLq1eF2rTTq1BMBGcSN.cip21; NetFunnel_ID=5002%3A300%3Akey%3DF4A769174066ECA7DD3F978FD4B237C6ECB24A15C5FD86779D5FC95EA709ACE8ACCA151B8A0EF1B03A3BC93CD633728A9808F5CB930E39C68E37E4F5B96415E1773A3F7C96C21462CCC391B2711EB6E635FE2E0D83CAA9B732AEE5DB6BDF92528032EF71507F49CF4FEC5ED09BFF20BF312C302C31%26nwait%3D0%26nnext%3D0%26tps%3D0.000000%26ttl%3D0%26ip%3Dtc.g4k.go.kr%26port%3D443\r\n' +
+      'sec-ch-ua: "Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"\r\n' +
+      'X-Requested-With: XMLHttpRequest\r\n' +
+      'sec-ch-ua-mobile: ?0\r\n' +
+      'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36\r\n' +
+      'sec-ch-ua-platform: "Windows"\r\n' +
+      'Origin: https://www.g4k.go.kr\r\n' +
+      'Sec-Fetch-Site: same-origin\r\n' +
+      'Sec-Fetch-Mode: cors\r\n' +
+      'Sec-Fetch-Dest: empty\r\n' +
+      'Accept-Language: en-US,en;q=0.9\r\n' +
+      'Accept-Encoding: gzip, compress, deflate, br\r\n' +
+      'Host: www.g4k.go.kr\r\n' +
+      'Connection: keep-alive\r\n' +
+      '\r\n',
+    _keepAliveTimeout: 0,
+    _onPendingData: [Function: nop],
+    agent: HttpsProxyAgent {
+      _events: [Object: null prototype],
+      _eventsCount: 2,
+      _maxListeners: undefined,
+      options: [Object],
+      requests: [Object: null prototype] {},
+      sockets: [Object: null prototype] {},
+      freeSockets: [Object: null prototype],
+      keepAliveMsecs: 1000,
+      keepAlive: true,
+      maxSockets: Infinity,
+      maxFreeSockets: 256,
+      scheduling: 'lifo',
+      maxTotalSockets: Infinity,
+      totalSocketCount: 2,
+      proxy: URL {},
+      proxyHeaders: {},
+      connectOpts: [Object],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false,
+      [Symbol(AgentBaseInternalState)]: [Object]
+    },
+    socketPath: undefined,
+    method: 'GET',
+    maxHeaderSize: undefined,
+    insecureHTTPParser: undefined,
+    joinDuplicateHeaders: undefined,
+    path: '/cipl/0100/login.do?authFailed=Y',
+    _ended: true,
+    res: IncomingMessage {
+      _events: [Object],
+      _readableState: [ReadableState],
+      _maxListeners: undefined,
+      socket: null,
+      httpVersionMajor: 1,
+      httpVersionMinor: 1,
+      httpVersion: '1.1',
+      complete: true,
+      rawHeaders: [Array],
+      rawTrailers: [],
+      joinDuplicateHeaders: undefined,
+      aborted: false,
+      upgrade: false,
+      url: '',
+      method: null,
+      statusCode: 200,
+      statusMessage: 'OK',
+      client: [TLSSocket],
+      _consuming: true,
+      _dumped: false,
+      req: [Circular *1],
+      _eventsCount: 4,
+      responseUrl: 'https://www.g4k.go.kr/cipl/0100/login.do?authFailed=Y',
+      redirects: [],
+      [Symbol(shapeMode)]: true,
+      [Symbol(kCapture)]: false,
+      [Symbol(kHeaders)]: [Object],
+      [Symbol(kHeadersCount)]: 26,
+      [Symbol(kTrailers)]: null,
+      [Symbol(kTrailersCount)]: 0
+    },
+    aborted: false,
+    timeoutCb: null,
+    upgradeOrConnect: false,
+    parser: null,
+    maxHeadersCount: null,
+    reusedSocket: false,
+    host: 'www.g4k.go.kr',
+    protocol: 'https:',
+    _redirectable: Writable {
+      _events: [Object],
+      _writableState: [WritableState],
+      _maxListeners: undefined,
+      _options: [Object],
+      _ended: true,
+      _ending: true,
+      _redirectCount: 1,
+      _redirects: [],
+      _requestBodyLength: 758,
+      _requestBodyBuffers: [],
+      _eventsCount: 3,
+      _onNativeResponse: [Function (anonymous)],
+      _currentRequest: [Circular *1],
+      _currentUrl: 'https://www.g4k.go.kr/cipl/0100/login.do?authFailed=Y',
+      _isRedirect: true,
+      [Symbol(shapeMode)]: true,
+      [Symbol(kCapture)]: false
+    },
+    [Symbol(shapeMode)]: false,
+    [Symbol(kCapture)]: false,
+    [Symbol(kBytesWritten)]: 0,
+    [Symbol(kNeedDrain)]: false,
+    [Symbol(corked)]: 0,
+    [Symbol(kOutHeaders)]: [Object: null prototype] {
+      accept: [Array],
+      cookie: [Array],
+      'sec-ch-ua': [Array],
+      'x-requested-with': [Array],
+      'sec-ch-ua-mobile': [Array],
+      'user-agent': [Array],
+      'sec-ch-ua-platform': [Array],
+      origin: [Array],
+      'sec-fetch-site': [Array],
+      'sec-fetch-mode': [Array],
+      'sec-fetch-dest': [Array],
+      'accept-language': [Array],
+      'accept-encoding': [Array],
+      host: [Array]
+    },
+    [Symbol(errored)]: null,
+    [Symbol(kHighWaterMark)]: 16384,
+    [Symbol(kRejectNonStandardBodyWrites)]: false,
+    [Symbol(kUniqueHeaders)]: null
+  },
+  data: '\r\n' +
+    '\r\n' +
+    '\r\n' +
+    '\r\n' +
+    '<!doctype html>\r\n' +
+    '<html lang="ko" class="oacxHtml">\r\n' +
+    '<head>\r\n' +
+    '<meta name="description"\r\n' +
+    '\tcontent="영사민원 24는 재외국민을 위한 발급 서비스 및 안내를 제공하고 있습니다." />\r\n' +
+    '<meta property="og:type" content="website">\r\n' +
+    '<meta property="og:title" content="재외동포365민원포털">\r\n' +
+    '<meta property="og:description"\r\n' +
+    '\tcontent="영사민원 24는 재외국민을 위한 발급 서비스 및 안내를 제공하고 있습니다.">\r\n' +
+    '<meta property="og:url" content="https://www.g4k.go.kr"> \r\n' +
+    '<link rel="canonical" href="https://www.g4k.go.kr"> \r\n' +
+    '\r\n' +
+    '<meta charset="UTF-8">\r\n' +
+    '<meta name="viewport" content="width=device-width, initial-scale=1.0">\r\n' +
+    '<meta http-equiv="X-UA-Compatible" content="IE=edge">\r\n' +
+    '<meta name="title" content="G4K" />\r\n' +
+    '<meta name="author" content="외교부" />\r\n' +
+    '\r\n' +
+    '\r\n' +
+    '\r\n' +
+    '\r\n' +
+    '\r\n' +
+    '\r\n' +
+    '\r\n' +
+    '\r\n' +
+    '\r\n' +
+    '\r\n' +
+    '\r\n' +
+    '\r\n' +
+    '\r\n' +
+    '\r\n' +
+    '\r\n' +
+    '\r\n' +
+    ' <!-- 2024.01.25 김종현  -->\r\n' +
+    ' <!-- 2024.01.25 김종현  -->\r\n' +
+    ' <!--  복호화[2020-04-27 추가]  -->\r\n' +
+    '\r\n' +
+    '<!--  css Start -->\r\n' +
+    '<link rel="shortcut icon" href="/favicon.ico">\r\n' +
+    '<link rel="stylesheet" type="text/css" href="/css/v2/portal_common.css?ver=20240119">\t<!-- 2023-11-28  v2적용 -->\r\n' +
+    '<link rel="stylesheet" type="text/css" href="/css/v2/portal_layout.css?ver=20240808">\t<!-- 2023-12-27  v2적용 -->\r\n' +
+    '<link rel="stylesheet" type="text/css" href="/css/v2/responsive.css?ver=20240710">\t<!-- 2023-11-28  v2적용 -->\r\n' +
+    '<link rel="stylesheet" type="text/css" href="/css/v2/tui-date-picker.css?ver=20240119">\t<!-- 2024-01-09 toast ui 달력 적용 -->\r\n' +
+    '<link rel="stylesheet" type="text/css" href="/css/v2/swiper.css?ver=20240119">\t<!-- 2024-01-29 swiper적용-->\r\n' +
+    '<link rel="stylesheet" type="text/css" href="/css/netfunnel/netfunnel.css"> <!-- Netfunnel - 2024.04.16 김종현 -->\r\n' +
+    '\r\n' +
+    '<!--  js Start -->\r\n' +
+    '<script src="/js/new/jquery-1.12.4.min.js"></script>\r\n' +
+    '<script src="/js/new/jquery-ui.min.js"></script>\r\n' +
+    '<script src="/js/validation/jquery.validate.js"></script>\r\n' +
+    '<script src="/js/common/jquery-migrate-1.4.1.min.js"></script>\r\n' +
+    '<script src="/js/common/jquery.cookie.js"></script>\r\n' +
+    '\r\n' +
+    '<script src="/js/new/v2/common.js?ver=20240228"></script>\t<!-- 2024-02-28  v2적용 -->\r\n' +
+    '<script src="/js/common/v2/ui.js?ver=20240308-01b"></script>\t<!-- 2023-11-28  v2적용, 2024-03-08 -->\r\n' +
+    '<script src="/js/common/v2/tui-date-picker.js?ver=20240109"></script>\t<!-- 2024-01-09 toast ui 달력 적용 -->\r\n' +
+    '<script src="/js/common/v2/project.js?ver=20240417"></script>\t<!-- 2024-01-26  v2적용, 오픈 적용 - 2024.04.04 -->\r\n' +
+    '<script src="/js/common/v2/swiper.js"></script>\t<!-- 2024-01-29  swiper -->\r\n' +
+    '<script src="/js/common/v2/common.js?ver=20240509" ></script>\t<!-- 2024-02-19 v2적용 -->\r\n' +
+    '\r\n' +
+    '<!-- jquery chosen -->\r\n' +
+    '<script src="/js/jquery-chosen/chosen.jquery.js"></script>\r\n' +
+    '<link type="text/css" href="/js/jquery-chosen/chosen.css" rel="stylesheet">\r\n' +
+    '\r\n' +
+    '<!--[if lt IE 9]>\r\n' +
+    '<script src="/js/common/html5shiv.min.js"></script>\r\n' +
+    '<![endif]-->\r\n' +
+    '\r\n' +
+    '<script>\r\n' +
+    '\tvar gfv_contextpath = "";\r\n' +
+    '\tvar gfv_mode = "real";\r\n' +
+    '\t// Netfunnel - 2024.04.16 김종현\r\n' +
+    '\t// -- 시작\r\n' +
+    "\tvar netfunnel = document.createElement('script');\r\n" +
+    "\tvar netfunnel_skin = document.createElement('script');\r\n" +
+    "\tvar mbuster_api_script = document.createElement('script');\r\n" +
+    "\tvar mbuster_meta_script = document.createElement('script');\r\n" +
+    "\tif(gfv_mode == 'real'){\r\n" +
+    '\t\t//넷퍼넬\r\n' +
+    "\t\tnetfunnel.src = '/js/netfunnel/netfunnel.js';\r\n" +
+    "\t\tnetfunnel_skin.src = '/js/netfunnel/test_skin.js';\r\n" +
+    '\t\tdocument.head.appendChild(netfunnel);\r\n' +
+    '\t\tdocument.head.appendChild(netfunnel_skin);\r\n' +
+    '\r\n' +
+    '\t}\r\n' +
+    '\t// -- 끝\r\n' +
+    '\r\n' +
+    '\tvar gfn_passPhrase \t\t= "ZzRrMDJDcnlwdG9qc0tleQ=="; // 복호화[2020-04-27 추가]\r\n' +
+    '\t// validation 결과 alert 형태로 표현\r\n' +
+    '\t$.validator.setDefaults({\r\n' +
+    '\t\tonkeyup: false,\r\n' +
+    '\t\tonclick: false,\r\n' +
+    '\t\tonfocusout: false,\r\n' +
+    '\t\tshowErrors: function(errorMap, errorList) {\r\n' +
+    '\t\t\tif(this.numberOfInvalids()) {\r\n' +
+    '\t\t\t\talert(errorList[0].message);\r\n' +
+    '\t\t\t}\r\n' +
+    '\t\t}\r\n' +
+    '\t});\r\n' +
+    '\r\n' +
+    '\t//모바일모드 구분\r\n' +
+    '\tvar ua = window.navigator.userAgent;\r\n' +
+    '\tua = ua.toLowerCase();\r\n' +
+    '\tvar platform = {};\r\n' +
+    '\tvar matched = {};\r\n' +
+    '\tvar mobileYn = "";\r\n' +
+    '\tvar platform_match = /(ipad)/.exec(ua) || /(ipod)/.exec(ua)\r\n' +
+    '\t\t|| /(windows phone)/.exec(ua) || /(iphone)/.exec(ua)\r\n' +
+    '\t\t|| /(kindle)/.exec(ua) || /(silk)/.exec(ua) || /(android)/.exec(ua)\r\n' +
+    '\t\t|| /(win)/.exec(ua) || /(mac)/.exec(ua) || /(linux)/.exec(ua)\r\n' +
+    '\t\t|| /(cros)/.exec(ua) || /(playbook)/.exec(ua)\r\n' +
+    '\t\t|| /(bb)/.exec(ua) || /(blackberry)/.exec(ua)\r\n' +
+    '\t\t|| [];\r\n' +
+    '\r\n' +
+    '\tmatched.platform = platform_match[0] || "";\r\n' +
+    '\r\n' +
+    '\tif(matched.platform) {\r\n' +
+    '\t\tplatform[matched.platform] = true;\r\n' +
+    '\t}\r\n' +
+    '\r\n' +
+    '\tif(platform.android || platform.bb || platform.blackberry\r\n' +
+    '\t\t\t|| platform.ipad || platform.iphone\r\n' +
+    '\t\t\t|| platform.ipod || platform.kindle\r\n' +
+    '\t\t\t|| platform.playbook || platform.silk\r\n' +
+    '\t\t\t|| platform["windows phone"]) {\r\n' +
+    '\t\tmobileYn = "Y";\r\n' +
+    '\t}\r\n' +
+    '\r\n' +
+    '\tif(platform.cros || platform.mac || platform.linux || platform.win) {\r\n' +
+    '\t\tmobileYn = "N";\r\n' +
+    '\t}\r\n' +
+    '\r\n' +
+    '</script>\r\n' +
+    '\r\n' +
+    '<!-- common javascript -->\r\n' +
+    '<script src="/js/common/projectMsg.js?ver=20241112" ></script>\r\n' +
+    '<script src="/js/common/stringUtil.js" ></script>\r\n' +
+    '<script src="/js/common/fileUtil.js" ></script>\r\n' +
+    '\r\n' +
+    '<!-- AES Encrypt/Decrypt  복호화[2020-04-27 추가]  -->\r\n' +
+    '<script type="text/javascript" src="/js/crypto-js/crypto-js.min.js"></script>\r\n' +
+    '<script type="text/javascript" src="/js/crypto-js/crypto.js"></script>\r\n' +
+    '\r\n' +
+    '<!-- Markany WebDRM -->\r\n' +
+    '<!--\r\n' +
+    '<script src="/solution/markany/webdrm/jQuery.XDomainRequest.js"></script>\r\n' +
+    '<script src="/solution/markany/webdrm/MaWebDRM_Common.js"></script>\r\n' +
+    '<script src="/solution/markany/webdrm/MaWebDRM.js"></script>\r\n' +
+    '-->\r\n' +
+    '\r\n' +
+    '<!-- smart editor -->\r\n' +
+    '<script src="/solution/smarteditor/js/service/HuskyEZCreator.js"></script>\r\n' +
+    '\r\n' +
+    '\r\n' +
+    '<link rel="stylesheet" type="text/css" href="/css/slick.css">\r\n' +
+    '<script src="/js/new/slick.min.js"></script>\r\n' +
+    '<script src="/js/new/slick.acc.js?ver=20210504-01"></script>\r\n' +
+    '<title>재외동포365민원포털</title>\r\n' +
+    '<script type="text/javascript"> \r\n' +
+    '\t\r\n' +
+    '\t\t\r\n' +
+    '\turlPrefix = "";\r\n' +
+    '\t\t\t\r\n' +
+    '\t\t\r\n' +
+    '\t\t\r\n' +
+    '\t\r\n' +
+    '\r\n' +
+    '\t$(function(){\r\n' +
+    '\t\t//넷퍼넬 자원회수 - 2024.04.16 김종현\r\n' +
+    "\t\tif(typeof NetFunnel_Action === 'function'){\r\n" +
+    '    \t\tNetFunnel_Complete();\r\n' +
+    '    \t}\r\n' +
+    '\r\n' +
+    '\r\n' +
+    "    \tvar validateErrorMessage =  '';\r\n" +
+    '\r\n' +
+    '\t\t if(validateErrorMessage.length > 0){\r\n' +
+    '\t\t \talert(validateErrorMessage);\r\n' +
+    '\t\t }\r\n' +
+    '\r\n' +
+    '\t\t//오늘 하루 이창 열지 않음 기능\r\n' +
+    '\t\tif($.cookie("nonOpenTodayYn") !="Y"){ //오늘만 하루 이창 열지 않음 눌렀을때\r\n' +
+    '\t\t\t$("#layer_popup").show();\r\n' +
+    '\t\t}else{\r\n' +
+    '\t\t\t$("#layer_popup").hide();\r\n' +
+    '\t\t}\r\n' +
+    '\r\n' +
+    "\t\t$('.main_popup .list').on('init', function(event, slick) {\r\n" +
+    `\t\t\t$('.chk').append('<div class="slick-counter"><span class="current"></span> / <span class="total"></span></div>');\r\n` +
+    "\t\t\t$('.main_popup .current').text(slick.currentSlide + 1);\r\n" +
+    "\t\t\t$('.main_popup .total').text(slick.slideCount);\r\n" +
+    '\t\t}).slick({\r\n' +
+    '\t\t\taccessibility: true,/*190620 추가*/\r\n' +
+    '\t\t\tinfinite: true,\r\n' +
+    '\t\t\tarrows: true,\r\n' +
+    '\t\t\tdots: false,\r\n' +
+    '\t\t\tslidesToShow: 1,\r\n' +
+    '\t\t\tslidesToScroll: 1,\r\n' +
+    '\t\t\tswipeToSlide: true,\r\n' +
+    '\t\t\tfocusOnSelect: true,\r\n' +
+    '\t\t\tautoplay: true,\r\n' +
+    '\t\t\tautoplaySpeed: 5000,\r\n' +
+    '\t    })\r\n' +
+    "\t\t.on('beforeChange', function(event, slick, currentSlide, nextSlide) {\r\n" +
+    "\t\t\t$('.main_popup .current').text(nextSlide + 1);\r\n" +
+    '\t\t});\r\n' +
+    '\t});\r\n' +
+    '\r\n' +
+    '\t$(document).ready(function(){\r\n' +
+    '\t\tfn_init();\r\n' +
+    '\r\n' +
+    "\t\t$('#layer_popup').mouseover( function() {\r\n" +
+    '\r\n' +
+    '\t\t\t$("button[name=slickBtn]").show();\r\n' +
+    '\t\t});\r\n' +
+    '\r\n' +
+    "\t\t$('#layer_popup').mouseleave( function() {\r\n" +
+    '\r\n' +
+    '\t\t\t$("button[name=slickBtn]").hide();\r\n' +
+    '\t\t});\r\n' +
+    '\r\n' +
+    '\t\t$("#allSc").keyup(function(key){\r\n' +
+    '\t\t\tif(key.keyCode == 13){\r\n' +
+    '\t\t\t\tfn_hSearch2();\r\n' +
+    '\t\t\t}\r\n' +
+    '\t\t})\r\n' +
+    '\r\n' +
+    '    });\r\n' +
+    '\r\n' +
+    '\tfunction fn_init(){\r\n' +
+    '\t\t/* cookiedata = document.cookie; */\r\n' +
+    '\r\n' +
+    '\t\t\r\n' +
+    "\t\t$('#layer_popup').hide();\r\n" +
+    '\t\t\r\n' +
+    '\r\n' +
+    '\t\t\r\n' +
+    ' \t\t\r\n' +
+    '\t\t\t$("#layer03").empty();\r\n' +
+    '\t\t\r\n' +
+    '\r\n' +
+    '\t\t/*  */\r\n' +
+    '\r\n' +
+    '\r\n' +
+    '\t\t//우측배너 init\r\n' +
+    '\t\tobjItem = $(".main_board .layout .board_bn .item li");\r\n' +
+    '\t\titemWidth = objItem.width();\r\n' +
+    '\t\tautoBanner();\t\t//init\r\n' +
+    '\t\t//auto banner play\r\n' +
+    '\t\t$(".main_board .layout .board_bn .cmd .play").click(function(e) {\r\n' +
+    '\t\t\te.preventDefault();\r\n' +
+    '\t\t\tautoBanner();\r\n' +
+    '\t\t\tfnChgBnCtl(true);\r\n' +
+    '\t\t});\r\n' +
+    '\t\t//next button click\r\n' +
+    '\t\t$(".main_board .layout .board_bn .cmd .next").click(function(e) {\r\n' +
+    '\t\t\te.preventDefault();\r\n' +
+    '\r\n' +
+    '\t\t\tif (cntB < objItem.size() - 1) {\r\n' +
+    '\t\t\t\tfnMoveItemL(cntB, cntB +1);\r\n' +
+    '\t\t\t\tcntB++;\r\n' +
+    '\t\t\t} else {\r\n' +
+    '\t\t\t\tfnMoveItemL(cntB, 0);\r\n' +
+    '\t\t\t\tcntB = 0;\r\n' +
+    '\t\t\t}\r\n' +
+    '\t\t\t$(".main_board .layout .board_bn .cmd > span span:eq(0)").text( cntB+1 );\r\n' +
+    '\t\t\tclearInterval(autoBn);\r\n' +
+    '\t\t\tfnChgBnCtl(false);\r\n' +
+    '\t\t});\r\n' +
+    '\r\n' +
+    '\t\t$(".stop").click(function(e) {\t\t//정지\r\n' +
+    '\t\t\te.preventDefault();\r\n' +
+    '\t\t\tclearInterval(autoBn);\r\n' +
+    '\t\t\tfnChgBnCtl(false);\r\n' +
+    '\t\t});\r\n' +
+    '\r\n' +
+    '\t\t$("button[name=slickBtn]").hide();\r\n' +
+    '\r\n' +
+    '\t\t//prev button click\r\n' +
+    '\t\t$(".main_board .layout .board_bn .cmd .prev").click(function(e) {\r\n' +
+    '\t\t\te.preventDefault();\r\n' +
+    '\t\t\tvar lastIdx = objItem.index(objItem.last());\r\n' +
+    '\r\n' +
+    '\t\t\tif (cntB > 0) {\r\n' +
+    '\t\t\t\tfnMoveItemR(cntB, cntB - 1);\r\n' +
+    '\t\t\t\tcntB--;\r\n' +
+    '\t\t\t} else {\r\n' +
+    '\t\t\t\tfnMoveItemR(cntB, lastIdx);\r\n' +
+    '\t\t\t\tcntB = lastIdx;\r\n' +
+    '\t\t\t}\r\n' +
+    '\t\t\t$(".main_board .layout .board_bn .cmd > span span:eq(0)").text( cntB + 1);\r\n' +
+    '\t\t\tclearInterval(autoBn);\r\n' +
+    '\t\t\tfnChgBnCtl(false);\r\n' +
+    '\t\t});\r\n' +
+    '\r\n' +
+    '\t}\r\n' +
+    '\r\n' +
+    '\tfunction main_setCookie(name, value, expiredays) {\r\n' +
+    '\t\tvar todayDate = new Date();\r\n' +
+    '\t\ttodayDate.setDate(todayDate.getDate() + expiredays);\r\n' +
+    '\t\tdocument.cookie = name + "=" + escape(value) + "; path=/; expires=" + todayDate.toGMTString() + ";";\r\n' +
+    '\t}\r\n' +
+    '\r\n' +
+    '\tfunction main_closeWin(layer_name, checkbox_name) {\r\n' +
+    '\t\tif($("#" + checkbox_name).is(":checked")) {\r\n' +
+    '\t\t\tmain_setCookie(layer_name, "done", 1);\r\n' +
+    '\t\t}\r\n' +
+    '\r\n' +
+    '\t\t$("#"+layer_name).hide();\r\n' +
+    '\t}\r\n' +
+    '\r\n' +
+    '\r\n' +
+    '\tvar mberClssCd =  "";\r\n' +
+    '\r\n' +
+    '\tvar sessionRegnCd = "";\r\n' +
+    '\tvar sessionNatnCd = "";\r\n' +
+    '\tvar sessionEmblCd = "";\r\n' +
+    '\r\n' +
+    '\tvar cookieRegnCd = "";\r\n' +
+    '\tvar cookieNatnCd = "";\r\n' +
+    '\tvar cookieEmblCd = "";\r\n' +
+    '\r\n' +
+    '\r\n' +
+    '\r\n' +
+    '\r\n' +
+    '\r\n' +
+    '\t/*****************\r\n' +
+    '\t *하단 추천사이트 롤링 *\r\n' +
+    '\t *****************/\r\n' +
+    '\tvar $interval;\r\n' +
+    '\tvar delayTime = 6000;\r\n' +
+    '\tvar aniSpeed = 450;\r\n' +
+    '\tvar $objBn;\r\n' +
+    '\tvar item_width;\r\n' +
+    '\tfunction slidetimer() {\r\n' +
+    '\t\t$interval = setInterval(function() {\r\n' +
+    '\t\t\tslideLeft();\r\n' +
+    '\t\t}, delayTime);\r\n' +
+    '\t}\r\n' +
+    '\tfunction slideLeft() {\t\t//to Left\r\n' +
+    '\t\t$objBn.stop().animate({\r\n' +
+    '\t\t\tleft : "-="+item_width},\r\n' +
+    '\t\taniSpeed, function() {\r\n' +
+    '\t\t\t$(this).css({"left" : 0});\r\n' +
+    '\t\t\t$objBn.append( $objBn.children("li").eq(0) );\r\n' +
+    '\t\t});\r\n' +
+    '\t}\r\n' +
+    '\tfunction slideRight() {\t\t//to Right\r\n' +
+    '\t\t$objBn.stop().animate({\r\n' +
+    '\t\t\tleft : "+="+item_width},\r\n' +
+    '\t\taniSpeed, function() {\r\n' +
+    '\t\t\t$(this).css({"left" : 0});\r\n' +
+    '\t\t\t$objBn.prepend( $objBn.children("li").last() );\r\n' +
+    '\t\t});\r\n' +
+    '\t}\r\n' +
+    '\tfunction fnPlayBtn(order) {\r\n' +
+    '\t\tif (order=="pause") {\t\t//정지\r\n' +
+    '\t\t\t$(".pause").hide();\r\n' +
+    '\t\t\t$(".play").show();\r\n' +
+    '\t\t} else {\t\t//재생\r\n' +
+    '\t\t\t$(".play").hide();\r\n' +
+    '\t\t\t$(".pause").show();\r\n' +
+    '\t\t}\r\n' +
+    '\t}\r\n' +
+    '\t/**************'... 128246 more characters
+}
+Fetching available dates [
+  { visitYn: 'A', emblCd: 'AQ', visitDe: '20250101' },
+  { visitYn: 'A', emblCd: 'AQ', visitDe: '20250102' },
+  { visitYn: 'N', emblCd: 'AQ', visitDe: '20250103' },
+  { visitYn: 'A', emblCd: 'AQ', visitDe: '20250104' },
+  { visitYn: 'A', emblCd: 'AQ', visitDe: '20250105' },
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250106' },
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250107' },
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250108' },
+  { visitYn: 'N', emblCd: 'AQ', visitDe: '20250109' },
+  { visitYn: 'N', emblCd: 'AQ', visitDe: '20250110' },
+  { visitYn: 'A', emblCd: 'AQ', visitDe: '20250111' },
+  { visitYn: 'A', emblCd: 'AQ', visitDe: '20250112' },
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250113' },
+  { visitYn: 'N', emblCd: 'AQ', visitDe: '20250114' },
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250115' },
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250116' },
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250117' },
+  { visitYn: 'A', emblCd: 'AQ', visitDe: '20250118' },
+  { visitYn: 'A', emblCd: 'AQ', visitDe: '20250119' },
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250120' },
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250121' },
+  { visitYn: 'N', emblCd: 'AQ', visitDe: '20250122' },
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250123' },
+  { visitYn: 'N', emblCd: 'AQ', visitDe: '20250124' },
+  { visitYn: 'A', emblCd: 'AQ', visitDe: '20250125' },
+  { visitYn: 'A', emblCd: 'AQ', visitDe: '20250126' },
+  { visitYn: 'N', emblCd: 'AQ', visitDe: '20250127' },
+  { visitYn: 'N', emblCd: 'AQ', visitDe: '20250128' },
+  { visitYn: 'N', emblCd: 'AQ', visitDe: '20250129' },
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250130' },
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250131' }
+]
+Date available:  [
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250130' },
+  { visitYn: 'Y', emblCd: 'AQ', visitDe: '20250131' }
+]
