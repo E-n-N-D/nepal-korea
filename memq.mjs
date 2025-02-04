@@ -13,7 +13,7 @@ import {
 import proxyUrl from "./proxy.mjs";
 import users from "./users/document-authorization/first.mjs";
 import { log } from "console";
-import { sleep } from "./first_full_queue.mjs";
+import { sleep } from "./nonq.mjs";
 
 class PreLoggedInUser {
   constructor(user, index) {
@@ -237,7 +237,7 @@ class PreLoggedInUser {
 
     const visitReserveCalendarUrl =
       "https://www.g4k.go.kr/ciph/0800/selectVisitReserveCalendarYes.do";
-    const date = "202501";
+    const date = "202502";
     let dta = `emblCd=${country.emblCd}&emblTime=${date}&visitResveBussGrpCd=${country.mainKind}`;
     let filteredDates = [];
 
