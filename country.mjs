@@ -40,16 +40,28 @@ const nepalVisa = {
 };
 
 const nepalDoc = {
-  emblCd: 'NP',
-  businessNm:`{"mainKindNm":["공증· 영사확인(Documents Authentication)"],"cffdnNm":["공증· 영사확인(Documents Authentication)"]}`,
-  grpNmListDB: '공증· 영사확인(Documents Authentication)',
+  emblCd: "NP",
+  businessNm: `{"mainKindNm":["공증· 영사확인(Documents Authentication)"],"cffdnNm":["공증· 영사확인(Documents Authentication)"]}`,
+  grpNmListDB: "공증· 영사확인(Documents Authentication)",
   cffdnNmDB: '공증· 영사확인(Documents Authentication)',
-  mainKind: 'NP0024',
-  subKind: 'NP0024',
-  totcnt: '1',
-  onedaycnt: '1',
-  // visitrCttpcNatnCd: "NP",
-}
+  mainKind: "NP0024",
+  subKind: "NP0024",
+  totcnt: "1",
+  onedaycnt: "1",
+  visitrCttpcNatnCd: "NP",
+};
+
+const philipines = {
+  emblCd: "CB",
+  businessNm: `{"mainKindNm":["Visa(Travel Agency)"],"cffdnNm":["Visa(Travel Agency)"]}`,
+  grpNmListDB: "공증· 영사확인(Documents Authentication)",
+  // cffdnNmDB: '공증· 영사확인(Documents Authentication)',
+  mainKind: "CB0068",
+  subKind: "CB0068",
+  totcnt: "1",
+  onedaycnt: "1",
+  visitrCttpcNatnCd: "NP",
+};
 
 // const nepalVisa = {
 //   emblCd: 'NP',
@@ -64,39 +76,39 @@ const nepalDoc = {
 // }
 
 const nzVisa = {
-  emblCd: 'AQ',
+  emblCd: "AQ",
   businessNm: `{"mainKindNm":["VISA APPLICATION"],"cffdnNm":["사증신청(Visa application)"]}`,
-  grpNmListDB: 'VISA APPLICATION',
-  cffdnNmDB: '사증신청(Visa application)',
-  mainKind: 'AQ0046',
-  subKind: 'AQ0047',
-  totcnt: '5',
-  onedaycnt: '2',
-  // visitrCttpcNatnCd: "AQ",
-}
+  grpNmListDB: "VISA APPLICATION",
+  // cffdnNmDB: '사증신청(Visa application)',
+  mainKind: "AQ0046",
+  subKind: "AQ0047",
+  totcnt: "5",
+  onedaycnt: "2",
+  visitrCttpcNatnCd: "AQ",
+};
 
-const belg ={
-  emblCd: 'BB',
+const belg = {
+  emblCd: "BB",
   businessNm: `{"mainKindNm":["여권/Paspoort/Passeport"],"cffdnNm":["여권/Paspoort/Passeport"]}`,
-  grpNmListDB: '여권/Paspoort/Passeport',
-  cffdnNmDB: '여권/Paspoort/Passeport',
-  mainKind: 'BB0001',
-  subKind: 'BB0001',
-  totcnt: '10',
-  onedaycnt: '2',
-  // visitrCttpcNatnCd: "BB",
-}
+  grpNmListDB: "여권/Paspoort/Passeport",
+  // cffdnNmDB: "여권/Paspoort/Passeport",
+  mainKind: "BB0001",
+  subKind: "BB0001",
+  totcnt: "1",
+  onedaycnt: "1",
+  visitrCttpcNatnCd: "NP",
+};
 
 const nepalFamily = {
-  emblCd: 'NP',
+  emblCd: "NP",
   businessNm: `{"mainKindNm":["가족관계"],"cffdnNm":["가족관계"]}`,
-  grpNmListDB: '가족관계',
-  cffdnNmDB: '가족관계',
-  mainKind: 'NP0014',
-  subKind: 'NP0014',
-  totcnt: '1',
-  onedaycnt: '1',
+  grpNmListDB: "가족관계",
+  cffdnNmDB: "가족관계",
+  mainKind: "NP0014",
+  subKind: "NP0014",
+  totcnt: "1",
+  onedaycnt: "1",
   // visitrCttpcNatnCd: "NP",
-}
+};
 
-export const country = nzVisa;
+export const country = belg;

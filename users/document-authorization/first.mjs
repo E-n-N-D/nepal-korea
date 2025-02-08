@@ -1,10 +1,10 @@
 const users = [
   {
-    name: "Rita Nepali",
-    email: "ritanepali1220@gmail.com",
-    password: "wctm faxl mfjm txhe",
-    number: "9816322003",
-    passportNo: "PA3083101",
+    name: "Nishan Pandey",
+    email: "pandeynishan26@gmail.com",
+    password: "Email@590jrt",
+    number: "9812349020",
+    passportNo: "PA1190620",
   },
 ];
 export default users;
