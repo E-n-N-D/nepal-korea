@@ -26,12 +26,24 @@
 //   nationCd: "ID",
 // };
 
-// // srilanka
 const srilanka = {
-  // country: "sri lanka",
-  mainKind: "SK0025",
   emblCd: "SK",
+  businessNm: `{\"mainKindNm\":[\"Visa\"],\"cffdnNm\":[\"Visa\"]}`,
+  grpNmListDB: "Visa",
+  // cffdnNmDB: '사증신청(Visa application)',
+  mainKind: "SK0025",
+  subKind: "SK0025",
+  totcnt: "1",
+  onedaycnt: "1",
+  visitrCttpcNatnCd: "NP",
 };
+
+// // srilanka
+// const srilanka = {
+//   // country: "sri lanka",
+//   mainKind: "SK0025",
+//   emblCd: "SK",
+// };
 
 const nepalVisa = {
   // country: "sri lanka",
@@ -43,7 +55,7 @@ const nepalDoc = {
   emblCd: "NP",
   businessNm: `{"mainKindNm":["공증· 영사확인(Documents Authentication)"],"cffdnNm":["공증· 영사확인(Documents Authentication)"]}`,
   grpNmListDB: "공증· 영사확인(Documents Authentication)",
-  cffdnNmDB: '공증· 영사확인(Documents Authentication)',
+  cffdnNmDB: "공증· 영사확인(Documents Authentication)",
   mainKind: "NP0024",
   subKind: "NP0024",
   totcnt: "1",
@@ -111,4 +123,4 @@ const nepalFamily = {
   // visitrCttpcNatnCd: "NP",
 };
 
-export const country = belg;
+export const country = srilanka;
