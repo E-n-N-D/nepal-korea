@@ -54,8 +54,8 @@ const nepalVisa = {
 const nepalDoc = {
   emblCd: "NP",
   businessNm: `{"mainKindNm":["공증· 영사확인(Documents Authentication)"],"cffdnNm":["공증· 영사확인(Documents Authentication)"]}`,
-  grpNmListDB: "공증· 영사확인(Documents Authentication)",
-  cffdnNmDB: "공증· 영사확인(Documents Authentication)",
+  grpNmListDB: "Documents Authentication",
+  cffdnNmDB: "Documents Authentication",
   mainKind: "NP0024",
   subKind: "NP0024",
   totcnt: "1",
