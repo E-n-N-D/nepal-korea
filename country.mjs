@@ -28,15 +28,32 @@
 
 const srilanka = {
   emblCd: "SK",
-  businessNm: `{\"mainKindNm\":[\"Visa\"],\"cffdnNm\":[\"Visa\"]}`,
-  grpNmListDB: "Visa",
-  // cffdnNmDB: '사증신청(Visa application)',
+  // businessNm: `{\"mainKindNm\":[],\"cffdnNm\":[]}`, true
+  businessNm: `{"mainKindNm":[],"cffdnNm":[]}`,
+  // businessNm: '',
+  // businessNm: ``, false
+  // businessNm: `{\"mainKindNm\":[\"Visa\"],\"cffdnNm\":[\"Visa\"]}`, true
+  // businessNm: '{"mainKindNm":["Visa"],"cffdnNm":["Visa"]}', false
+  grpNmListDB: "공증· 영사확인(Documents Authentication)",
+  cffdnNmDB: "Documents Authentication",
   mainKind: "SK0025",
   subKind: "SK0025",
   totcnt: "1",
   onedaycnt: "1",
   visitrCttpcNatnCd: "NP",
 };
+
+// const srilanka = {
+//   emblCd: "SK",
+//   businessNm: `{\"mainKindNm\":[\"Visa\"],\"cffdnNm\":[\"Visa\"]}`,
+//   grpNmListDB: "Visa",
+//   // cffdnNmDB: '사증신청(Visa application)',
+//   mainKind: "SK0025",
+//   subKind: "SK0025",
+//   totcnt: "1",
+//   onedaycnt: "1",
+//   visitrCttpcNatnCd: "NP",
+// };
 
 // // srilanka
 // const srilanka = {
@@ -123,4 +140,4 @@ const nepalFamily = {
   // visitrCttpcNatnCd: "NP",
 };
 
-export const country = nepalDoc;
+export const country = srilanka;
