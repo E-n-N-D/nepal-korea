@@ -13,7 +13,7 @@ const iproyal_proxy = {
   host: "p.webshare.io",
   protocol: "http",
   auth: {
-    username: "hchmhmmd-KR-rotate",
+    username: "hchmhmmd-rotate",
     password: "fem4i9498yqh",
   },
 };
