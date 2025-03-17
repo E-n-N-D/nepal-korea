@@ -78,7 +78,7 @@ const nepalDoc = {
   totcnt: "1",
   onedaycnt: "1",
   visitrCttpcNatnCd: "NP",
-  visitrCttpc: 9812349020,
+  visitrCttpc: "9812349020",
 };
 
 const philipines = {
@@ -141,4 +141,4 @@ const nepalFamily = {
   // visitrCttpcNatnCd: "NP",
 };
 
-export const country = nepalDoc;
+export const country = nzVisa;
