@@ -115,6 +115,7 @@ const nzVisa = {
   totcnt: "5",
   onedaycnt: "2",
   visitrCttpcNatnCd: "NP",
+  st3tk: "AQ7b47af8c-1296-4011-86f1-6149c4cb7c85"
 };
 
 const belg = {
@@ -141,4 +142,4 @@ const nepalFamily = {
   // visitrCttpcNatnCd: "NP",
 };
 
-export const country = srilanka;
+export const country = nzVisa;
