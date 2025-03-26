@@ -78,7 +78,7 @@ const nepalDoc = {
   totcnt: "1",
   onedaycnt: "1",
   visitrCttpcNatnCd: "NP",
-  visitrCttpc: "9812349020",
+  visitrCttpc: "9862329593",
 };
 
 const philipines = {
@@ -109,12 +109,12 @@ const nzVisa = {
   emblCd: "AQ",
   businessNm: `{"mainKindNm":["VISA APPLICATION"],"cffdnNm":["사증신청(Visa application)"]}`,
   grpNmListDB: "VISA APPLICATION",
-  // cffdnNmDB: '사증신청(Visa application)',
+  cffdnNmDB: '사증신청(Visa application)',
   mainKind: "AQ0046",
   subKind: "AQ0047",
   totcnt: "5",
   onedaycnt: "2",
-  visitrCttpcNatnCd: "AQ",
+  visitrCttpcNatnCd: "NP",
 };
 
 const belg = {
