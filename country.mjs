@@ -109,13 +109,13 @@ const nzVisa = {
   emblCd: "AQ",
   businessNm: `{"mainKindNm":["VISA APPLICATION"],"cffdnNm":["사증신청(Visa application)"]}`,
   grpNmListDB: "VISA APPLICATION",
-  cffdnNmDB: '사증신청(Visa application)',
+  cffdnNmDB: "사증신청(Visa application)",
   mainKind: "AQ0046",
   subKind: "AQ0047",
   totcnt: "5",
   onedaycnt: "2",
   visitrCttpcNatnCd: "NP",
-  st3tk: "AQ7b47af8c-1296-4011-86f1-6149c4cb7c85"
+  st3tk: "AQ7b47af8c-1296-4011-86f1-6149c4cb7c85",
 };
 
 const belg = {
