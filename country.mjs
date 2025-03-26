@@ -115,7 +115,7 @@ const nzVisa = {
   totcnt: "5",
   onedaycnt: "2",
   visitrCttpcNatnCd: "NP",
-  st3tk: "AQ7b47af8c-1296-4011-86f1-6149c4cb7c85",
+  st3tk: "AQ904a78f9-1145-4aad-9694-f4800c7d58bb",
 };
 
 const belg = {
