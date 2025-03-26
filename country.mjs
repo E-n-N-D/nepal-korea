@@ -29,10 +29,10 @@
 const srilanka = {
   emblCd: "SK",
   // businessNm: `{\"mainKindNm\":[],\"cffdnNm\":[]}`, true
-  businessNm: `{"mainKindNm":[],"cffdnNm":[]}`,
+  // businessNm: `{"mainKindNm":[],"cffdnNm":[]}`,
   // businessNm: '',
   // businessNm: ``, false
-  // businessNm: `{\"mainKindNm\":[\"Visa\"],\"cffdnNm\":[\"Visa\"]}`, true
+  businessNm: `{\"mainKindNm\":[\"Visa\"],\"cffdnNm\":[\"Visa\"]}`,
   // businessNm: '{"mainKindNm":["Visa"],"cffdnNm":["Visa"]}', false
   grpNmListDB: "공증· 영사확인(Documents Authentication)",
   cffdnNmDB: "Documents Authentication",
@@ -141,4 +141,4 @@ const nepalFamily = {
   // visitrCttpcNatnCd: "NP",
 };
 
-export const country = nzVisa;
+export const country = srilanka;
