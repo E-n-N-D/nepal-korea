@@ -183,7 +183,7 @@ class PreLoggedInUser {
 
     const visitReserveCalendarUrl =
       "https://www.g4k.go.kr/ciph/0800/selectVisitReserveCalendarYes.do";
-    const date = "202504";
+    const date = "202505";
     let dta = `emblCd=${country.emblCd}&emblTime=${date}&visitResveBussGrpCd=${country.mainKind}`;
     let filteredDates = [];
 
