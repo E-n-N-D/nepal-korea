@@ -77,8 +77,7 @@ const nepalDoc = {
   subKind: "NP0024",
   totcnt: "1",
   onedaycnt: "1",
-  visitrCttpcNatnCd: "NP",
-  visitrCttpc: "9862329593",
+  visitrCttpcNatnCd: "NP"
 };
 
 const philipines = {
@@ -142,4 +141,4 @@ const nepalFamily = {
   // visitrCttpcNatnCd: "NP",
 };
 
-export const country = nzVisa;
+export const country = nepalDoc;
